@@ -9,6 +9,7 @@ import SpeakerOverviewPage from "./pages/SpeakerOverviewPage";
 import { useEffect } from "react";
 import { createInitialRooms } from "./utils/roomUtils";
 import { createInitialSpeakers } from "./utils/speakerUtils";
+import TalksOverviewPage from "./pages/TalksOverviewPage";
 function App() {
   useEffect(() => {
     createInitialRooms();
@@ -21,6 +22,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/speakers" element={<SpeakerOverviewPage />} />
+            <Route path="/talks" element={<TalksOverviewPage />} />
             <Route path="/rooms" element={<RoomOverviewPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route element={<ProtectedRoute />}>
