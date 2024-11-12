@@ -1,6 +1,6 @@
 import { getSpeakers, createSpeaker } from "../services/speakerService";
 
-export const createSpeakers = async () => {
+export const createInitialSpeakers = async () => {
   const existingSpeakers = await getSpeakers();
 
   if (existingSpeakers.items.length === 0) {
