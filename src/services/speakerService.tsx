@@ -21,3 +21,24 @@ export const getSpeakers = async () => {
       return [];
     });
 };
+
+export const createSpeaker = async (speakerData: any) => {
+  try {
+    const response = await fetch(`${API_URL}/speakers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+      body: JSON.stringify([speakerData]),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create speaker");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
