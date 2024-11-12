@@ -4,9 +4,14 @@ import { AuthProvider } from "./context/AuthContext";
 import { Header } from "./components/layout/Header";
 import { LoginPage } from "./pages/auth/LoginPage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import RoomOverviewPage from "./pages/roomOverviewPage";
+import RoomOverviewPage from "./pages/RoomOverviewPage";
+import { useEffect } from "react";
+import { createInitialRooms } from "./utils/roomUtils";
 
 function App() {
+  useEffect(() => {
+    createInitialRooms();
+  }, []);
   return (
     <>
       <AuthProvider>
