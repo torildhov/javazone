@@ -5,12 +5,14 @@ import { Header } from "./components/layout/Header";
 import { LoginPage } from "./pages/auth/LoginPage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import RoomOverviewPage from "./pages/RoomOverviewPage";
+import SpeakerOverviewPage from "./pages/SpeakerOverviewPage";
 import { useEffect } from "react";
 import { createInitialRooms } from "./utils/roomUtils";
-
+import { createInitialSpeakers } from "./utils/speakerUtils";
 function App() {
   useEffect(() => {
     createInitialRooms();
+    createInitialSpeakers();
   }, []);
   return (
     <>
@@ -18,6 +20,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
+            <Route path="/speakers" element={<SpeakerOverviewPage />} />
             <Route path="/rooms" element={<RoomOverviewPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route element={<ProtectedRoute />}>
