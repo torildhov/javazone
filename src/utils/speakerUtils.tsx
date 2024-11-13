@@ -7,6 +7,8 @@ export const createInitialSpeakers = async () => {
     const defaultSpeakers = [
       { name: "Severus Snape", biography: "Potion Master" },
       { name: "Harry Potter", biography: "Youngest seeker of the century" },
+      { name: "Hermione Granger", biography: "Excellent student" },
+      { name: "Ronald Weasley", biography: "Wizard's chess Champion" },
     ];
 
     for (const speaker of defaultSpeakers) {
