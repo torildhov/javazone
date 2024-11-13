@@ -2,6 +2,7 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import logo from '../../assets/JavaZoneLogo.png';
 
 // Type-definisjon for NavLink-komponentens props
 type NavLinkProps = {
@@ -30,6 +31,7 @@ export const Header = () => {
 
     return (
         <header>
+            <img src={logo} className="java-zone-logo" alt="JavaZone logo" />
             <nav>
                 {/* Hoved-navigasjonslenker */}
                 <NavLink to="/">Home</NavLink>
