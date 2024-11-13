@@ -5,8 +5,8 @@ export const createInitialSpeakers = async () => {
 
   if (existingSpeakers.items.length === 0) {
     const defaultSpeakers = [
-      { name: "Eduardo Jr Co", biography: "Test Biography" },
-      { name: "Eduardo Jr Co", biography: "Test Biography" },
+      { name: "Severus Snap", biography: "Potion Master" },
+      { name: "Harry Potter", biography: "Youngest seeker of the century" },
     ];
 
     for (const speaker of defaultSpeakers) {
