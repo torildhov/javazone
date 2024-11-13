@@ -1,27 +1,24 @@
-import { getSpeakers, getSpecificSpeaker } from "../services/speakerService";
-import React, { useEffect, useState } from "react";
+import { DataContext } from "../context/DataContext";
+import { useContext, useState } from "react";
 import "../App.css";
 
 const SpeakerOverviewPage = () => {
-  const [speakers, setSpeakers] = useState([]);
+  const context = useContext(DataContext);
+
+  if (!context) {
+    throw new Error("DataContext not found!");
+  }
+
+  const { speakers, talks, loading } = context;
   const [chosenSpeaker, setChosenSpeaker] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [loadingMoreDetails, setLoadingMoreDetails] = useState(false);
 
-  useEffect(() => {
-    const fetchSpeakers = async () => {
-      const speakerData = await getSpeakers();
-      setSpeakers(speakerData.items);
-      setLoading(false);
-    };
-    fetchSpeakers();
-  }, []);
+  //Fetches talks that associates to a particular speaker
+  const getTalksForSpeaker = (speakerId: string) => {
+    return talks.filter((talk) => talk.speakerId === speakerId);
+  };
 
-  const clickChosenSpeaker = async (id) => {
-    setLoadingMoreDetails(true);
-    const speakerData = await getSpecificSpeaker(id);
-    setChosenSpeaker(speakerData);
-    setLoadingMoreDetails(false);
+  const clickChosenSpeaker = (speaker) => {
+    setChosenSpeaker(speaker);
   };
 
   //Clicking back to speaker overview
@@ -29,26 +26,29 @@ const SpeakerOverviewPage = () => {
     setChosenSpeaker(null);
   };
 
-  useEffect(() => {
-    console.log("Speakers: ", speakers);
-  }, [speakers]);
-
   return (
     <div>
       <h1>Speaker Overview</h1>
       {loading ? (
         <p>Loading...</p>
       ) : chosenSpeaker ? (
-        <div>
-          {loadingMoreDetails ? (
-            <p>Loading more details..</p>
+        <div className="speaker-detail">
+          <h2>{chosenSpeaker.name}</h2>
+          <p>biography: {chosenSpeaker.biography}</p>
+          <h3>Talks</h3>
+          {getTalksForSpeaker(chosenSpeaker._uuid).length > 0 ? (
+            <ul>
+              {getTalksForSpeaker(chosenSpeaker._uuid).map((talk) => (
+                <li key={talk._uuid}>
+                  <strong>{talk.title}</strong> - Room ID: {talk.roomId}, Time:{" "}
+                  {talk.time}
+                </li>
+              ))}
+            </ul>
           ) : (
-            <div className="speaker-detail">
-              <h2>{chosenSpeaker.name}</h2>
-              <p>biography: {chosenSpeaker.biography}</p>
-              <button onClick={clickBack}>Back</button>
-            </div>
+            <p>No talks available for this speaker.</p>
           )}
+          <button onClick={clickBack}>Back</button>
         </div>
       ) : (
         <div className="speaker-container">
@@ -56,7 +56,7 @@ const SpeakerOverviewPage = () => {
             <div
               key={speaker._uuid}
               className="speaker-list"
-              onClick={() => clickChosenSpeaker(speaker._uuid)}
+              onClick={() => clickChosenSpeaker(speaker)}
               style={{ cursor: "pointer" }}
             >
               <h2>{speaker.name}</h2>
