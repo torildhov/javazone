@@ -25,7 +25,7 @@ export const getSpeakers = async () => {
 //Fetching specific speaker
 export const getSpecificSpeaker = async (id) => {
   try {
-    const response = await fetch(`${API_URL}/speakers/:${id}`, {
+    const response = await fetch(`${API_URL}/speakers/${id}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
