@@ -20,7 +20,7 @@ interface Talk {
 interface Speaker {
   _uuid: string;
   name: string;
-  bio: string;
+  biography: string;
 }
 
 interface DataContextType {
