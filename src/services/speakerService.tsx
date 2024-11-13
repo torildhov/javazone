@@ -1,7 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-// Fetching the speakers list
+//Fetching the speakers list
 export const getSpeakers = async () => {
   return fetch(`${API_URL}/speakers`, {
     method: "GET",
@@ -22,6 +22,32 @@ export const getSpeakers = async () => {
     });
 };
 
+//Fetching specific speaker
+export const getSpecificSpeaker = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/speakers/:${id}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching the speaker with ID ${id}: ${response.statusText}`
+      );
+    }
+
+    const speakerData = await response.json();
+    return speakerData;
+  } catch (error) {
+    console.error("Failed to fetch the specific speaker!", error);
+    return null;
+  }
+};
+
+//creating speakers by default if there is none
 export const createSpeaker = async (speakerData: any) => {
   try {
     const response = await fetch(`${API_URL}/speakers`, {
