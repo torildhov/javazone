@@ -6,7 +6,7 @@ export const HomePage = () => {
     <div className="hero-image">
         <img src={heroImg}  alt="JavaZone 2025 hero image" />
     </div>
-      <div>
+      <div className="welcome-container">
         <h1>Welcome to JavaZone 2025</h1>
         <div>
           <p>September 4th-5th 2025 in Oslo Spektrum, Norway</p>

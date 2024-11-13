@@ -8,11 +8,12 @@ import './Header.css';
 type NavLinkProps = {
     to: string;
     children: React.ReactNode;
+    onClick: () => void;
 };
 
 // Gjenbrukbar NavLink-komponent for konsistent navigasjonsstyling
-const NavLink = ({ to, children }: NavLinkProps) => (
-    <Link to={to}>
+const NavLink = ({ to, children, onClick }: NavLinkProps) => (
+    <Link to={to} onClick={onClick}>
         {children}
     </Link>
 );
@@ -33,12 +34,18 @@ export const Header = () => {
     // Håndter utlogging og omdiriger til innloggingssiden
     const handleLogout = () => {
         logout();
+        setMenuState({ isOpen: false });
         navigate('/login');
     };
 
     //Veksle menyens åpen/lukket tilstand
     const toggleMenu = () => {
         setMenuState(prev => ({ isOpen: !prev.isOpen }));
+    };
+
+    // Lukk menyen når en navigasjonslenke klikkes
+    const handleNavClick = () => {
+        setMenuState({ isOpen: false });
     };
 
     return (
@@ -54,17 +61,17 @@ export const Header = () => {
             </button>
     
             <nav className={menuState.isOpen ? 'nav-open' : ''}>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/speakers">Speakers</NavLink>
-                <NavLink to="/talks">Talks</NavLink>
-                <NavLink to="/rooms">Rooms</NavLink>
+                <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
+                <NavLink to="/speakers" onClick={handleNavClick}>Speakers</NavLink>
+                <NavLink to="/talks" onClick={handleNavClick}>Talks</NavLink>
+                <NavLink to="/rooms" onClick={handleNavClick}>Rooms</NavLink>
     
                 {isAuthenticated ? (
                     <button onClick={handleLogout}>Logout</button>
                 ) : (
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink to="/login" onClick={handleNavClick}>Login</NavLink>
                 )}
             </nav>
         </header>
     );
-    }
+}

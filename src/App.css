@@ -45,14 +45,32 @@ p, h1, h2, h3, h4, h5, h6 {
 .hero-image {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-image img {
-  width: 100%;
+  width: auto;
   height: auto;
   display: block;
-  max-height: 80vh;
+  max-height:65vh;
 }
+
+.welcome-container {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2rem 15rem;
+  width: calc(100% - 30rem);
+  color: black;
+  margin: 1rem auto;
+}
+
+a[href*="neat.firecms.co"] {
+  display: none !important;
+}
+
 
 /*Speaker list css*/
 

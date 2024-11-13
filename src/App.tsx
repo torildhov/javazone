@@ -12,6 +12,7 @@ import { createInitialSpeakers } from "./utils/speakerUtils";
 import TalksOverviewPage from "./pages/TalksOverviewPage";
 import { DataProvider } from "./context/DataContext";
 import { HomePage } from "./pages/HomePage";
+import NeatBackground from './components/AnimatedBackground';
 
 function App() {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
       <AuthProvider>
         <DataProvider>
           <BrowserRouter>
+          <NeatBackground />
             <Header />
             <Routes>
               <Route path="/speakers" element={<SpeakerOverviewPage />} />
