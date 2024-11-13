@@ -1,5 +1,6 @@
 import { getSpeakers } from "../services/speakerService";
 import React, { useEffect, useState } from "react";
+import "../App.css";
 
 const SpeakerOverviewPage = () => {
   const [speakers, setSpeakers] = useState([]);
@@ -24,13 +25,14 @@ const SpeakerOverviewPage = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <div className="speaker-container">
           {speakers.map((speaker) => (
-            <li key={speaker._uuid}>
-              {speaker.name}, biography: {speaker.biography}
-            </li>
+            <div key={speaker._uuid} className="speaker-list">
+              <h2>{speaker.name}</h2>
+              <p>biography: {speaker.biography}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
