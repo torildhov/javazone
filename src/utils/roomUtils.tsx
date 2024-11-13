@@ -14,7 +14,5 @@ export const createInitialRooms = async () => {
     for (const room of defaultRooms) {
       await createRoom(room);
     }
-
-    console.log("Default rooms created.");
   }
 };
