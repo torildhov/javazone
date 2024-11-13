@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { createInitialRooms } from "./utils/roomUtils";
 import { createInitialSpeakers } from "./utils/speakerUtils";
 import TalksOverviewPage from "./pages/TalksOverviewPage";
+import { DataProvider } from "./context/DataContext";
 function App() {
   useEffect(() => {
     createInitialRooms();
@@ -18,18 +19,20 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/speakers" element={<SpeakerOverviewPage />} />
-            <Route path="/talks" element={<TalksOverviewPage />} />
-            <Route path="/rooms" element={<RoomOverviewPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route element={<ProtectedRoute />}>
-              {/* Protected routes will go here */}
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <DataProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/speakers" element={<SpeakerOverviewPage />} />
+              <Route path="/talks" element={<TalksOverviewPage />} />
+              <Route path="/rooms" element={<RoomOverviewPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route element={<ProtectedRoute />}>
+                {/* Protected routes will go here */}
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </DataProvider>
       </AuthProvider>
     </>
   );
