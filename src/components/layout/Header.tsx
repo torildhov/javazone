@@ -1,3 +1,5 @@
+//Navigasjon og autentiseringsstatus visning
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import logo from '../../assets/JavaZoneLogo.png';
@@ -48,40 +50,35 @@ export const Header = () => {
         setMenuState({ isOpen: false });
     };
 
-    // Lukk menyen når musepekeren forlater menyområdet
-    const handleMouseLeave = () => {
-        setMenuState({ isOpen: false });
-    };
-
     return (
-      <header className="header">
-      <div className="logo-container">
-          <Link to="/">
-              <img src={logo} alt="JavaZone logo" />
-          </Link>
-      </div>
-      
-      <div className="menu-container" onMouseLeave={handleMouseLeave}>
-          <button className="hamburger" onClick={toggleMenu}>
-              <span></span>
-              <span></span>
-              <span></span>
-          </button>
-  
-          <nav className={menuState.isOpen ? 'nav-open' : ''}>
-              <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
-              <NavLink to="/speakers" onClick={handleNavClick}>Speakers</NavLink>
-              <NavLink to="/talks" onClick={handleNavClick}>Talks</NavLink>
-              <NavLink to="/rooms" onClick={handleNavClick}>Rooms</NavLink>
-  
-              {isAuthenticated ? (
-                  <button onClick={handleLogout}>Logout</button>
-              ) : (
-                  <NavLink to="/login" onClick={handleNavClick}>Login</NavLink>
-              )}
-          </nav>
-      </div>
-  </header>
-  
+        <header className="header">
+            <div className="logo-container">
+                <Link to="/">
+                    <img src={logo} alt="JavaZone logo" />
+                </Link>
+            </div>
+            
+            <div className="menu-container">
+                <button className="hamburger" onClick={toggleMenu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <nav className={menuState.isOpen ? 'nav-open' : ''}>
+                    <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
+                    <NavLink to="/speakers" onClick={handleNavClick}>Speakers</NavLink>
+                    <NavLink to="/talks" onClick={handleNavClick}>Talks</NavLink>
+                    <NavLink to="/rooms" onClick={handleNavClick}>Rooms</NavLink>
+                </nav>
+
+                {isAuthenticated ? (
+                    <button className="auth-button" onClick={handleLogout}>Logout</button>
+                ) : (
+                    <Link to="/login" onClick={handleNavClick} className="auth-button">Login</Link>
+                )}
+            </div>
+        </header>
     );
-}
+
+};
