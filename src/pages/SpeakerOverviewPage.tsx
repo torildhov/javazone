@@ -1,7 +1,6 @@
 import SpeakerList from "../components/speakers/SpeakerList";
 import { DataContext } from "../context/DataContext";
-import { useContext, useState } from "react";
-import "../App.css";
+import { useContext } from "react";
 
 const SpeakerOverviewPage = () => {
   const context = useContext(DataContext);
