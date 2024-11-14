@@ -6,6 +6,10 @@ interface TalkListProps {
 }
 
 const TalkList = ({ talks }: TalkListProps) => {
+  if (!talks || talks.length === 0) {
+    return <p>Ingen foredrag tilgjengelig.</p>;
+  }
+
   return (
     <ul>
       {talks.map((talk) => (
