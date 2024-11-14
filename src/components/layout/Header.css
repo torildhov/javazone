@@ -76,6 +76,26 @@ nav.nav-open {
   border: 1px solid black;
 }
 
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #6B00FF;
+    transition: width 0.7s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
 .menu-container {
   display: flex;
   align-items: center;
@@ -83,7 +103,7 @@ nav.nav-open {
 }
 
 .auth-button {
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.7rem;
   background: #000;
   color: white;
   border: none;
