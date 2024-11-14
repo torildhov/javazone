@@ -48,7 +48,7 @@ const SpeakerOverviewPage = () => {
           ) : (
             <p>No talks available for this speaker.</p>
           )}
-          <button onClick={clickBack}>Back</button>
+          <button onClick={clickBack}>Back to overview</button>
         </div>
       ) : (
         <div className="speaker-container">
