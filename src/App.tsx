@@ -13,6 +13,7 @@ import TalksOverviewPage from "./pages/TalksOverviewPage";
 import { DataProvider } from "./context/DataContext";
 import { HomePage } from "./pages/HomePage";
 import NeatBackground from './components/AnimatedBackground';
+import "@fontsource/josefin-sans";
 
 function App() {
   useEffect(() => {
