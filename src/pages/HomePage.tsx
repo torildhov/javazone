@@ -4,7 +4,7 @@ export const HomePage = () => {
   return (
     <>
     <div className="hero-image">
-        <img src={heroImg}  alt="JavaZone 2025 hero image" />
+        <img rel="preload" src={heroImg}  alt="JavaZone 2025 hero image" />
     </div>
       <div className="container">
         <h1>Welcome to JavaZone 2025</h1>

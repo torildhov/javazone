@@ -1,3 +1,4 @@
+import '@fontsource/josefin-sans';
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
@@ -13,7 +14,7 @@ import TalksOverviewPage from "./pages/TalksOverviewPage";
 import { DataProvider } from "./context/DataContext";
 import { HomePage } from "./pages/HomePage";
 import NeatBackground from './components/AnimatedBackground';
-import "@fontsource/josefin-sans";
+import { CustomCursor } from "./components/CustomCursor";
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
       <AuthProvider>
         <DataProvider>
           <BrowserRouter>
+          <CustomCursor />
           <NeatBackground />
             <Header />
             <Routes>
