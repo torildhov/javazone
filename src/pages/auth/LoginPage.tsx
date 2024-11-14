@@ -31,7 +31,7 @@ export const LoginPage = () => {
     if (success) {
       navigate('/');
     } else {
-      setError('Invalid credentials');
+      setError('Invald username or password');
     }
   };
 
