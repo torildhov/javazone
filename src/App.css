@@ -1,3 +1,55 @@
+/*css resets*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none !important;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  cursor: none !important;
+}
+
+html, body, *, *::before, *::after {
+  cursor: none !important;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: none !important;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+input, input:hover {
+  cursor: auto !important;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root {
+  isolation: isolate;
+}
+
+a, button, input, select {
+  cursor: none !important;
+}
+
 /*site wide*/
 #root {
   width: 100%;
@@ -138,6 +190,19 @@ h6 {
 #root {
   isolation: isolate;
 }
+/*cursor*/
+#custom-cursor {
+  width: 20px;
+  height: 20px;
+  background-color: #6B00FF;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #F2FF00;
+  will-change: transform;
+}
 
 /*Home page css*/
 .hero-image {
@@ -156,7 +221,7 @@ h6 {
 }
 
 
-/*Logipage css*/
+/*Login page css*/
 .login-container {
   max-width: 37.5rem;
   margin: 2rem auto;
