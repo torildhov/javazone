@@ -18,14 +18,14 @@ const NavLink = ({ to, children, onClick }: NavLinkProps) => (
     </Link>
 );
 
-//Type-definisjon for menyens tilstand
+// Type-definisjon for menyens tilstand
 type MenuState = {
     isOpen: boolean;
 }
 
 // Hoved-Header-komponent for nettstedets navigasjon
 export const Header = () => {
-    //Tilstandshåndtering for hamburger-menyen
+    // Tilstandshåndtering for hamburger-menyen
     const [menuState, setMenuState] = useState<MenuState>({ isOpen: false });
     // Hent autentiseringsstatus og utloggingsfunksjon fra auth context
     const { isAuthenticated, logout } = useAuth();
@@ -38,7 +38,7 @@ export const Header = () => {
         navigate('/login');
     };
 
-    //Veksle menyens åpen/lukket tilstand
+    // Veksle menyens åpen/lukket tilstand
     const toggleMenu = () => {
         setMenuState(prev => ({ isOpen: !prev.isOpen }));
     };
@@ -48,30 +48,40 @@ export const Header = () => {
         setMenuState({ isOpen: false });
     };
 
+    // Lukk menyen når musepekeren forlater menyområdet
+    const handleMouseLeave = () => {
+        setMenuState({ isOpen: false });
+    };
+
     return (
-        <header className="header">
-            <div className="logo-container">
-                <img src={logo} alt="JavaZone logo" />
-            </div>
-            
-            <button className="hamburger" onClick={toggleMenu}>
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-    
-            <nav className={menuState.isOpen ? 'nav-open' : ''}>
-                <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
-                <NavLink to="/speakers" onClick={handleNavClick}>Speakers</NavLink>
-                <NavLink to="/talks" onClick={handleNavClick}>Talks</NavLink>
-                <NavLink to="/rooms" onClick={handleNavClick}>Rooms</NavLink>
-    
-                {isAuthenticated ? (
-                    <button onClick={handleLogout}>Logout</button>
-                ) : (
-                    <NavLink to="/login" onClick={handleNavClick}>Login</NavLink>
-                )}
-            </nav>
-        </header>
+      <header className="header">
+      <div className="logo-container">
+          <Link to="/">
+              <img src={logo} alt="JavaZone logo" />
+          </Link>
+      </div>
+      
+      <div className="menu-container" onMouseLeave={handleMouseLeave}>
+          <button className="hamburger" onClick={toggleMenu}>
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+  
+          <nav className={menuState.isOpen ? 'nav-open' : ''}>
+              <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
+              <NavLink to="/speakers" onClick={handleNavClick}>Speakers</NavLink>
+              <NavLink to="/talks" onClick={handleNavClick}>Talks</NavLink>
+              <NavLink to="/rooms" onClick={handleNavClick}>Rooms</NavLink>
+  
+              {isAuthenticated ? (
+                  <button onClick={handleLogout}>Logout</button>
+              ) : (
+                  <NavLink to="/login" onClick={handleNavClick}>Login</NavLink>
+              )}
+          </nav>
+      </div>
+  </header>
+  
     );
 }

@@ -36,12 +36,12 @@ export const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className='container login-container'>
       <h1>Login</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Username</label>
           <input
             id="username"
             name="username"
@@ -51,7 +51,7 @@ export const LoginPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             name="password"
