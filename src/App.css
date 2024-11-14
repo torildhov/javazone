@@ -114,9 +114,10 @@ form input {
 }
 
 
-form input:focus {
+form input:focus, button:focus, a:focus {
   outline: none;
   border-color: #6B00FF;
+  border-width: 1.5px;
   box-shadow: 0 0 0 2px rgba(107, 0, 255, 0.2);
 }
 
@@ -134,6 +135,7 @@ button {
 button:hover {
   background: #6B00FF;
 }
+
 
 a[href*="neat.firecms.co"] {
   display: none !important;
@@ -223,7 +225,7 @@ h6 {
 
 /*Login page css*/
 .login-container {
-  max-width: 37.5rem;
+  max-width: 30rem;
   margin: 2rem auto;
   padding: 3rem;
 }
