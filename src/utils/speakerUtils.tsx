@@ -11,7 +11,10 @@ export const createInitialSpeakers = async () => {
     ];
 
     for (const speaker of defaultSpeakers) {
-      await createSpeaker(speaker);
+      const result = await createSpeaker(speaker);
+      if (result) {
+        console.log(`Speaker created: ${speaker.name}`);
+      }
     }
   }
 };
