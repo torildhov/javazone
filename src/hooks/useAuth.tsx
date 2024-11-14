@@ -1,0 +1,1 @@
+//Hook to handle authentication state and methods

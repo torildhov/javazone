@@ -1,6 +1,4 @@
-@import url('@fontsource/josefin-sans');
-
-/*css reset*/
+/*css resets*/
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -12,6 +10,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  cursor: none !important;
 }
 
 html, body, *, *::before, *::after {
@@ -33,6 +32,10 @@ img, picture, video, canvas, svg {
 
 input, button, textarea, select {
   font: inherit;
+}
+
+input, input:hover {
+  cursor: auto !important;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -136,7 +139,7 @@ a[href*="neat.firecms.co"] {
   display: none !important;
 }
 
-/*cursor css*/
+/*cursor*/
 #custom-cursor {
   width: 20px;
   height: 20px;
@@ -167,7 +170,7 @@ a[href*="neat.firecms.co"] {
 }
 
 
-/*Logipage css*/
+/*Login page css*/
 .login-container {
   max-width: 37.5rem;
   margin: 2rem auto;
