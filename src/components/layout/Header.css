@@ -36,6 +36,12 @@ button.hamburger:focus {
     background: none !important;
 }
 
+.hamburger:hover span {
+    background: #6B00FF;
+    box-shadow: 0 0 10px rgba(107, 0, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
 
 nav {
     display: flex;
