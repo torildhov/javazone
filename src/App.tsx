@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
 import { useEffect } from "react";
 import { createInitialRooms } from "./utils/roomUtils";
 import { createInitialSpeakers } from "./utils/speakerUtils";
@@ -25,6 +26,7 @@ function App() {
             <NeatBackground />
             <Header />
             <AppRoutes />
+            <Footer />
           </BrowserRouter>
         </DataProvider>
       </AuthProvider>

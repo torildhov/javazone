@@ -77,9 +77,10 @@ select {
 #root {
   width: 100%;
   margin: 0;
-  padding: 2rem;
   text-align: center;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 p {
@@ -200,7 +201,7 @@ a[href*="neat.firecms.co"] {
 /*Login page css*/
 .login-container {
   max-width: 30rem;
-  margin: 2rem auto;
+  margin: 1rem auto 12.5rem;
   padding: 3rem;
 }
 
@@ -286,8 +287,6 @@ button[type="submit"] {
 .password-toggle:hover {
   color: #6B00FF;
 }
-
-
 
 /*Speaker list css*/
 
