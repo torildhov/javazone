@@ -11,7 +11,6 @@ import { DataProvider } from "./context/DataContext";
 import { AppRoutes } from "./routes/Routes";
 import NeatBackground from "./components/AnimatedBackground";
 import { CustomCursor } from "./components/CustomCursor";
-import RoomDetailsPage from "./pages/RoomDetailsPage";
 
 function App() {
   useEffect(() => {
@@ -28,7 +27,6 @@ function App() {
             <Header />
             <AppRoutes />
             <Footer />
-            <Route path="/rooms/:id" element={<RoomDetailsPage />} />
           </BrowserRouter>
         </DataProvider>
       </AuthProvider>

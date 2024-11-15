@@ -5,6 +5,7 @@ import RoomOverviewPage from "../pages/RoomOverviewPage";
 import SpeakerOverviewPage from "../pages/SpeakerOverviewPage";
 import TalksOverviewPage from "../pages/TalksOverviewPage";
 import { HomePage } from "../pages/HomePage";
+import RoomDetailsPage from "../pages/RoomDetailsPage";
 
 export const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ export const AppRoutes = () => {
       <Route path="/speakers" element={<SpeakerOverviewPage />} />
       <Route path="/talks" element={<TalksOverviewPage />} />
       <Route path="/rooms" element={<RoomOverviewPage />} />
+      <Route path="/rooms/:id" element={<RoomDetailsPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<HomePage />} />
       <Route element={<ProtectedRoute />}>
