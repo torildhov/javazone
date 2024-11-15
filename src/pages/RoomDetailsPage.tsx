@@ -13,9 +13,12 @@ const RoomDetailsPage = () => {
   const { rooms } = context;
 
   const room = rooms.find((room) => room._uuid === id);
+  if (!room) {
+    return <p>Rom ikke funnet</p>;
+  }
 
   return (
-    <div>
+    <div className="rooms-container">
       <RoomItem key={room._uuid} room={room} />
     </div>
   );

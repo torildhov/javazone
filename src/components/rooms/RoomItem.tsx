@@ -2,10 +2,10 @@ import TalkList from "../talks/TalkList";
 import { DataContext, Room } from "../../context/DataContext";
 import { useContext } from "react";
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 
 interface RoomItemProps {
   room: Room;
-  onClick: () => void;
 }
 
 const RoomItem = ({ room }: RoomItemProps) => {
@@ -16,6 +16,7 @@ const RoomItem = ({ room }: RoomItemProps) => {
   }
 
   const { talks, speakers } = context;
+  const navigate = useNavigate();
 
   const getTalksForRoom = (roomId: string) => {
     return talks
@@ -41,6 +42,9 @@ const RoomItem = ({ room }: RoomItemProps) => {
           <TalkList talks={roomTalks} />
         </div>
       )}
+      <button onClick={() => navigate(-1)} style={{ margin: "1rem" }}>
+        Go back
+      </button>
     </div>
   );
 };
