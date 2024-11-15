@@ -1,0 +1,46 @@
+import { Link } from "react-router-dom";
+import { FaFacebookF } from "react-icons/fa";
+import { HiOutlineArrowUp } from "react-icons/hi";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa6";
+import "./Footer.css";
+
+export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <footer className="footer">
+      <div className="scroll-top" onClick={scrollToTop}>
+      <FaArrowUp />
+      </div>
+      <div className="footer-content">
+        <div className="footer-section">
+          <h3>Hurtiglenker</h3>
+          <Link to="/speakers">Speakers</Link>
+          <Link to="/talks">Talks</Link>
+          <Link to="/rooms">Rooms</Link>
+        </div>
+
+        <div className="footer-section">
+          <h3>Nyhetsbrev</h3>
+          <form className="newsletter-form">
+            <input type="email" placeholder="Din e-post" />
+            <button type="submit">Meld på</button>
+          </form>
+        </div>
+
+        <div className="footer-section">
+          <h3>Følg oss</h3>
+          <div className="social-links">
+            <a href="#"><FaFacebookF /></a>
+            <a href="#"><FaXTwitter /></a>
+            <a href="#"><FaLinkedinIn /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};

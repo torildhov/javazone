@@ -77,9 +77,10 @@ select {
 #root {
   width: 100%;
   margin: 0;
-  padding: 2rem;
   text-align: center;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 p {
@@ -138,7 +139,7 @@ form input {
 
 form input:focus {
   outline: none;
-  border-color: #6B00FF;
+  border-color: #6b00ff;
   border-width: 1.5px;
   box-shadow: 0 0 0 2px rgba(107, 0, 255, 0.2);
 }
@@ -157,7 +158,6 @@ button {
 button:hover {
   background: #6b00ff;
 }
-
 
 a[href*="neat.firecms.co"] {
   display: none !important;
@@ -194,16 +194,14 @@ a[href*="neat.firecms.co"] {
 }
 
 .logo-container img:hover {
-  filter: drop-shadow(0 0 20px #F2FF00);
+  filter: drop-shadow(0 0 20px #f2ff00);
   transition: all 0.3s ease;
 }
-
-
 
 /*Login page css*/
 .login-container {
   max-width: 30rem;
-  margin: 2rem auto;
+  margin: 1rem auto 12.5rem;
   padding: 3rem;
 }
 
@@ -230,7 +228,7 @@ form div {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
-  min-height: 100px; 
+  min-height: 100px;
   position: relative;
 }
 form input {
@@ -256,7 +254,7 @@ form label {
   position: absolute;
   bottom: 20px;
   left: 0;
-  color: #FF0000;
+  color: #ff0000;
   font-size: 0.875rem;
   display: block;
   text-align: left;
@@ -289,8 +287,6 @@ button[type="submit"] {
 .password-toggle:hover {
   color: #6B00FF;
 }
-
-
 
 /*Speaker list css*/
 
