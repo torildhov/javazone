@@ -9,7 +9,7 @@ import { createInitialRooms } from "./utils/roomUtils";
 import { createInitialSpeakers } from "./utils/speakerUtils";
 import { DataProvider } from "./context/DataContext";
 import { AppRoutes } from "./routes/Routes";
-import NeatBackground from './components/AnimatedBackground';
+import NeatBackground from "./components/AnimatedBackground";
 import { CustomCursor } from "./components/CustomCursor";
 
 function App() {
