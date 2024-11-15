@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import SpeakerItem from "./SpeakerItem";
-import "../../App.css";
+import "./SpeakerItem.css";
 
 const SpeakerList = () => {
   const context = useContext(DataContext);

@@ -25,7 +25,7 @@ const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
   };
 
   return (
-    <div onClick={clickChosenSpeaker}>
+    <div onClick={clickChosenSpeaker} className="speaker-list">
       <h2>{speaker.name}</h2>
       <p>Biography: {speaker.biography}</p>
 
