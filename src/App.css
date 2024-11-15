@@ -105,7 +105,7 @@ a:hover {
   border: 1px solid black;
   border-radius: 20px;
   padding: 2rem 15rem;
-  width: calc(100% - 40rem);
+  width: calc(100% - 30rem);
   color: black;
   margin: 1rem auto;
 }
