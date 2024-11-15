@@ -8,13 +8,13 @@ import "./Footer.css";
 
 export const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="footer">
       <div className="scroll-top" onClick={scrollToTop}>
-      <FaArrowUp />
+        <FaArrowUp />
       </div>
       <div className="footer-content">
         <div className="footer-section">
@@ -35,9 +35,23 @@ export const Footer = () => {
         <div className="footer-section">
           <h3>Følg oss</h3>
           <div className="social-links">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaXTwitter /></a>
-            <a href="#"><FaLinkedinIn /></a>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF />
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+              <FaXTwitter />
+            </a>
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn />
+            </a>
           </div>
         </div>
       </div>
