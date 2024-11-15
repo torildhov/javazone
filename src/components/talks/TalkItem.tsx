@@ -1,4 +1,5 @@
 import { Speaker, Talk } from "../../context/DataContext";
+import "./talkItem.css";
 
 interface TalkItemProps {
   talk: Talk & { speaker?: Speaker }; // `speaker` er valgfritt
@@ -6,15 +7,13 @@ interface TalkItemProps {
 
 const TalkItem = ({ talk }: TalkItemProps) => {
   return (
-    <li>
-      <p>
-        <strong>Tittel:</strong> {talk.title}
-      </p>
-      <p>
+    <li className="liTalkItem">
+      <p className="pTalkItem">
+        <strong>Tittel:</strong> {talk.title}<br />
+      
         <strong>Foredragsholder:</strong>{" "}
-        {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}
-      </p>
-      <p>
+        {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}<br />
+      
         <strong>Tid:</strong> {talk.time}
       </p>
     </li>

@@ -8,11 +8,13 @@ export const createInitialSpeakers = async () => {
       { name: "Severus Snape", biography: "Potion Master" },
       { name: "Harry Potter", biography: "Youngest seeker of the century" },
       { name: "Hermione Granger", biography: "Excellent student" },
-      { name: "Ronald Weasley", biography: "Wizard's chess Champion" },
     ];
 
     for (const speaker of defaultSpeakers) {
-      await createSpeaker(speaker);
+      const result = await createSpeaker(speaker);
+      if (result) {
+        console.log(`Speaker created: ${speaker.name}`);
+      }
     }
   }
 };

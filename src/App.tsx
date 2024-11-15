@@ -1,19 +1,16 @@
+import "@fontsource/josefin-sans";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { Header } from "./components/layout/Header";
-import { LoginPage } from "./pages/auth/LoginPage";
-import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import RoomOverviewPage from "./pages/RoomOverviewPage";
-import SpeakerOverviewPage from "./pages/SpeakerOverviewPage";
+import { Footer } from "./components/layout/Footer";
 import { useEffect } from "react";
 import { createInitialRooms } from "./utils/roomUtils";
 import { createInitialSpeakers } from "./utils/speakerUtils";
-import TalksOverviewPage from "./pages/TalksOverviewPage";
 import { DataProvider } from "./context/DataContext";
-import { HomePage } from "./pages/HomePage";
+import { AppRoutes } from "./routes/Routes";
 import NeatBackground from "./components/AnimatedBackground";
-import "@fontsource/josefin-sans";
+import { CustomCursor } from "./components/CustomCursor";
 import RoomDetailsPage from "./pages/RoomDetailsPage";
 
 function App() {
@@ -26,19 +23,12 @@ function App() {
       <AuthProvider>
         <DataProvider>
           <BrowserRouter>
+            <CustomCursor />
             <NeatBackground />
             <Header />
-            <Routes>
-              <Route path="/speakers" element={<SpeakerOverviewPage />} />
-              <Route path="/talks" element={<TalksOverviewPage />} />
-              <Route path="/rooms" element={<RoomOverviewPage />} />
-              <Route path="/rooms/:id" element={<RoomDetailsPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/" element={<HomePage />} />
-              <Route element={<ProtectedRoute />}>
-                {/* Protected routes will go here */}
-              </Route>
-            </Routes>
+            <AppRoutes />
+            <Footer />
+            <Route path="/rooms/:id" element={<RoomDetailsPage />} />
           </BrowserRouter>
         </DataProvider>
       </AuthProvider>

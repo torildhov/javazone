@@ -1,10 +1,86 @@
+/*css resets*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none !important;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  cursor: none !important;
+}
+
+html,
+body,
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: none !important;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input,
+input:hover {
+  cursor: auto !important;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root {
+  isolation: isolate;
+}
+
+a,
+button,
+input,
+select {
+  cursor: none !important;
+}
+
 /*site wide*/
 #root {
   width: 100%;
   margin: 0;
-  padding: 2rem;
   text-align: center;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 p {
@@ -18,10 +94,11 @@ a {
   text-decoration: none;
   transition: color 0.3s ease;
   margin-bottom: 0.7rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.02rem;
 }
 
 a:hover {
+  color: #6b00ff;
   color: #6b00ff;
 }
 
@@ -64,6 +141,7 @@ form input {
 form input:focus {
   outline: none;
   border-color: #6b00ff;
+  border-width: 1.5px;
   box-shadow: 0 0 0 2px rgba(107, 0, 255, 0.2);
 }
 
@@ -80,61 +158,25 @@ button {
 
 button:hover {
   background: #6b00ff;
+  background: #6b00ff;
 }
 
 a[href*="neat.firecms.co"] {
   display: none !important;
 }
 
-/*css reset*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-#root {
-  isolation: isolate;
+/*cursor*/
+#custom-cursor {
+  width: 20px;
+  height: 20px;
+  background-color: #6b00ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #f2ff00;
+  will-change: transform;
 }
 
 /*Home page css*/
@@ -150,18 +192,102 @@ h6 {
   width: auto;
   height: auto;
   display: block;
-  max-height: 65vh;
+  max-height: 63vh;
 }
 
-/*Logipage css*/
+.logo-container img:hover {
+  filter: drop-shadow(0 0 20px #f2ff00);
+  transition: all 0.3s ease;
+}
+
+/*Login page css*/
 .login-container {
-  max-width: 37.5rem;
-  margin: 2rem auto;
+  max-width: 30rem;
+  margin: 1rem auto 12.5rem;
   padding: 3rem;
 }
 
 .login-container h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.login-container p {
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 100%;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-height: 100px;
+  position: relative;
+}
+form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1.1875rem;
+}
+
+form label {
+  position: absolute;
+  left: 1rem;
+  top: -0.7rem;
+  padding: 0 0.5rem;
+  background-color: white;
+  font-size: 0.875rem;
+  color: #666;
+  z-index: 1;
+}
+
+.error {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  color: #ff0000;
+  font-size: 0.875rem;
+  display: block;
+  text-align: left;
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+}
+
+.password-field {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 28%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #6b00ff;
 }
 
 /*Speaker list css*/
@@ -177,18 +303,18 @@ h6 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 20px;
   width: 200px;
   box-sizing: border-box;
   background-color: #ffffff;
 }
 
 .speaker-detail {
-  border: 2px solid #ffffff;
+  border: 1px solid #000000;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
   margin-top: 20px;
   width: 500px;
   background-color: #ffffff;
@@ -223,3 +349,5 @@ h6 {
   width: 500px;
   background-color: #ffffff;
 }
+
+/*responsive*/
