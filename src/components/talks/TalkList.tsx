@@ -1,23 +1,29 @@
-import { Talk } from "../../context/DataContext";
-import TalkItem from "./TalkItem";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { Talk } from '../../context/DataContext';
 
-interface TalkListProps {
-  talks: Talk[];
-}
-
-const TalkList = ({ talks }: TalkListProps) => {
-  if (!talks || talks.length === 0) {
-    return <p>Ingen foredrag tilgjengelig.</p>;
-  }
+const TalkList = ({ talks }: { talks: Talk[] }) => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   return (
-    <div className="liTalkItem">
+    <ul className="talk-list">
       {talks.map((talk) => (
-        <TalkItem key={talk._uuid} talk={talk} />
+        <li key={talk._uuid} className="talk-item">
+          <h2>{talk.title}</h2>
+          <p>Time: {talk.time}</p>
+          <p>Rom: {talk.roomId}</p>
+          <p>Foredragholder: {talk.speakerId}</p>
+          {isAuthenticated && (
+            <button onClick={() => navigate(`/talks/${talk._uuid}/edit`)}>
+              Edit
+            </button>
+          )}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
-
 export default TalkList;
+

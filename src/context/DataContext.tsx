@@ -1,14 +1,16 @@
-import { createContext, ReactNode, useEffect } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { createContext, ReactNode, useState, useEffect } from "react";
+import { getRooms } from "../services/roomService";
+import { getTalks } from "../services/TalksService";
+import { getSpeakers } from "../services/speakerService";
 
 export interface Room {
-  _uuid: string;
+  _uuid?: string;
   name: string;
-  capacity: number;
+  capacity: number | undefined;
 }
 
 export interface Talk {
-  _uuid: string;
+  _uuid?: string;
   title: string;
   roomId: string;
   speakerId: string;
@@ -16,7 +18,7 @@ export interface Talk {
 }
 
 export interface Speaker {
-  _uuid: string;
+  _uuid?: string;
   name: string;
   biography: string;
 }
@@ -25,7 +27,10 @@ export interface DataContextType {
   rooms: Room[];
   talks: Talk[];
   speakers: Speaker[];
-  isLoading: boolean;
+  setRooms: (rooms: Room[]) => void;
+  setTalks: (talks: Talk[]) => void;
+  setSpeakers: (speakers: Speaker[]) => void;
+  isLoading: boolean; //
 }
 
 export const DataContext = createContext<DataContextType | undefined>(
@@ -35,55 +40,49 @@ export const DataContext = createContext<DataContextType | undefined>(
 export const DataProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const {
-    data: roomsData,
-    loading: roomsLoading,
-    error: roomsError,
-  } = useFetch({
-    method: "GET",
-    path: "rooms",
-  });
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [talks, setTalks] = useState<Talk[]>([]);
+  const [speakers, setSpeakers] = useState<Speaker[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const {
-    data: talksData,
-    loading: talksLoading,
-    error: talksError,
-  } = useFetch({
-    method: "GET",
-    path: "talks",
-  });
-
-  const {
-    data: speakersData,
-    loading: speakersLoading,
-    error: speakersError,
-  } = useFetch({
-    method: "GET",
-    path: "speakers",
-  });
-
-  const isLoading = roomsLoading || talksLoading || speakersLoading;
-
-  // Hvis noen feil oppstår, logg dem (eller håndter på annen måte)
   useEffect(() => {
-    if (roomsError || talksError || speakersError) {
-      console.error(
-        "Error fetching data:",
-        roomsError || talksError || speakersError
-      );
-    }
-  }, [roomsError, talksError, speakersError]);
+    const fetchData = async () => {
+      setIsLoading(true);
+
+      try {
+        const [roomsData, talksData, speakersData] = await Promise.all([
+          getRooms(),
+          getTalks(),
+          getSpeakers(),
+        ]);
+
+        setRooms(roomsData.items);
+        setTalks(talksData.items);
+        setSpeakers(speakersData.items);
+      } catch (err: any) {
+        console.error("Error fetching data", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <DataContext.Provider
       value={{
-        rooms: roomsData?.items || [],
-        talks: talksData?.items || [],
-        speakers: speakersData?.items || [],
+        rooms,
+        talks,
+        speakers,
+        setRooms,
+        setTalks,
+        setSpeakers,
         isLoading,
       }}
     >
       {children}
+      {isLoading && <p>Loading data...</p>}
     </DataContext.Provider>
   );
 };
