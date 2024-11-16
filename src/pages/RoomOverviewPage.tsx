@@ -1,4 +1,3 @@
-import RoomList from "../components/rooms/RoomList";
 import RoomsList from "../components/rooms/RoomsList";
 import { DataContext } from "../context/DataContext";
 import { useContext } from "react";
@@ -15,7 +14,7 @@ const RoomOverviewPage = () => {
   return (
     <div>
       <h1>Rooms</h1>
-      {isLoading ? <p>Loading...</p> : <RoomList />}
+      {isLoading ? <p>Loading...</p> : <RoomsList />}
     </div>
   );
 };
