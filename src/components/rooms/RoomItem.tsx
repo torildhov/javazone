@@ -5,9 +5,10 @@ import "./RoomItem.css";
 
 interface RoomItemProps {
   room: Room;
+  onDelete: () => void;
 }
 
-const RoomItem = ({ room }: RoomItemProps) => {
+const RoomItem = ({ room, onDelete }: RoomItemProps) => {
   const context = useContext(DataContext);
 
   if (!context) {
@@ -15,7 +16,6 @@ const RoomItem = ({ room }: RoomItemProps) => {
   }
 
   const { talks, speakers } = context;
-
 
   const getTalksForRoom = (roomId: string) => {
     return talks
@@ -26,7 +26,7 @@ const RoomItem = ({ room }: RoomItemProps) => {
       }));
   };
 
-  const roomTalks = getTalksForRoom(room._uuid);
+  const roomTalks = getTalksForRoom(room._uuid || "");
 
   return (
     <li>
@@ -42,8 +42,8 @@ const RoomItem = ({ room }: RoomItemProps) => {
           <TalkList talks={roomTalks} />
         </div>
       )}
+      <button onClick={onDelete}>Slett rom</button>
     </li>
   );
-  
 };
 export default RoomItem;
