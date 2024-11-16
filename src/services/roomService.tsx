@@ -1,3 +1,4 @@
+import { Room } from "../context/DataContext";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -24,7 +25,7 @@ export const getRooms = async () => {
     });
 };
 
-export const createRoom = async (roomData: any) => {
+export const createRoom = async (roomData: Room) => {
   try {
     const response = await fetch(`${API_URL}/rooms`, {
       method: "POST",
@@ -39,8 +40,23 @@ export const createRoom = async (roomData: any) => {
       throw new Error("Failed to create room");
     }
     return await response.json();
+    console.log("Rom opprettet:", response.json);
   } catch (error) {
     console.error(error);
     return null;
+  }
+};
+
+export const deleteRoom = async (roomId: string): Promise<void> => {
+  const response = await fetch(`${API_URL}/rooms/${roomId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete room");
   }
 };
