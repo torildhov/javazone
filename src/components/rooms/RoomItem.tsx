@@ -15,7 +15,7 @@ const RoomItem = ({ room }: RoomItemProps) => {
   }
 
   const { talks, speakers } = context;
-  const navigate = useNavigate();
+
 
   const getTalksForRoom = (roomId: string) => {
     return talks
@@ -46,5 +46,4 @@ const RoomItem = ({ room }: RoomItemProps) => {
   );
   
 };
-
 export default RoomItem;
