@@ -29,10 +29,6 @@ const AddRoom: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(rooms);
-  }, [rooms]);
-
   return (
     <div>
       <h2>Add Room</h2>
