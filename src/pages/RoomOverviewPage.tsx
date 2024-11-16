@@ -14,7 +14,7 @@ const RoomOverviewPage = () => {
   return (
     <div>
       <h1>Rooms</h1>
-      {isLoading ? <p>Laster...</p> : <RoomsList />}
+      {isLoading ? <p>Loading...</p> : <RoomList />}
     </div>
   );
 };

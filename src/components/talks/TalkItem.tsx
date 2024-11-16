@@ -7,17 +7,15 @@ interface TalkItemProps {
 
 const TalkItem = ({ talk }: TalkItemProps) => {
   return (
-    <li className="liTalkItem">
-      <p className="pTalkItem">
-        <strong>Tittel:</strong> {talk.title}<br />
-      
-        <strong>Foredragsholder:</strong>{" "}
-        {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}<br />
-      
-        <strong>Tid:</strong> {talk.time}
-      </p>
-    </li>
+    <div className="pTalkItem">
+      <h2>{talk.title}</h2>
+      <p>Foredragsholder: {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}</p>
+      <p>Tid: {talk.time}</p>
+    </div>
   );
 };
+
+
+
 
 export default TalkItem;

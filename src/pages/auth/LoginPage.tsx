@@ -31,13 +31,13 @@ export const LoginPage = () => {
     const newErrors: FormErrors = {};
 
     if (!formData.username.trim()) {
-      newErrors.username = "Brukernavn er påkrevd";
+      newErrors.username = "Username is required";
     }
 
     if (!formData.password) {
-      newErrors.password = "Passord er påkrevd";
+      newErrors.password = "Password is required";
     } else if (formData.password.length < 5) {
-      newErrors.password = "Passord må være minst 5 tegn";
+      newErrors.password = "Password must be at least 5 characters";
     }
 
     setErrors(newErrors);
@@ -53,7 +53,7 @@ export const LoginPage = () => {
       if (success) {
         navigate("/");
       } else {
-        setErrors({ password: "Ugyldig brukernavn eller passord" });
+        setErrors({ password: "Invalid username or password" });
       }
     }
   };
@@ -76,11 +76,11 @@ export const LoginPage = () => {
 
   return (
     <div className="container login-container">
-      <h1>Logg inn</h1>
-      <p>Velkommen tilbake!</p>
+      <h1>Login</h1>
+      <p>Welcome back!</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Brukernavn</label>
+          <label htmlFor="username">Username</label>
           <input
             id="username"
             name="username"
@@ -91,7 +91,7 @@ export const LoginPage = () => {
           {errors.username && <span className="error">{errors.username}</span>}
         </div>
         <div className="password-field">
-          <label htmlFor="password">Passord</label>
+          <label htmlFor="password">Password</label>
           <div className="password-input-container">
             <input
               id="password"
@@ -109,7 +109,7 @@ export const LoginPage = () => {
           </div>
           {errors.password && <span className="error">{errors.password}</span>}
         </div>
-        <button type="submit">Logg inn</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );

@@ -11,12 +11,13 @@ const TalkList = ({ talks }: TalkListProps) => {
   }
 
   return (
-    <ul>
+    <div className="liTalkItem">
       {talks.map((talk) => (
         <TalkItem key={talk._uuid} talk={talk} />
       ))}
-    </ul>
+    </div>
   );
 };
+
 
 export default TalkList;

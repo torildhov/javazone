@@ -13,9 +13,9 @@ const TalksOverviewPage = () => {
 
   return (
     <>
-      <h1>Foredrags Oversikt</h1>
+      <h1>Talks</h1>
       {isLoading ? (
-        <p>Laster inn...</p>
+        <p>Loading...</p>
       ) : (
         <TalkList talks={talks} />
       )}

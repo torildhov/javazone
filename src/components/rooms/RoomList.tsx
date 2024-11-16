@@ -12,12 +12,12 @@ const RoomList = () => {
   const { rooms } = context;
 
   return (
-    <ul>
+    <div className="liRoomItem">
       {rooms.map((room) => (
         <RoomItem key={room._uuid} room={room} />
       ))}
-    </ul>
-  );
+    </div>
+  );  
 };
 
 export default RoomList;
