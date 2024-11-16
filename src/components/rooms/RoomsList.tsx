@@ -21,7 +21,7 @@ const RoomsList = () => {
     <div className="rooms-container">
       {rooms.map((room) => (
         <div
-          className="room-item"
+          className="liRoomItem"
           key={room._uuid}
           onClick={() => handleRoomClick(room._uuid)}
           style={{ cursor: "pointer" }}
