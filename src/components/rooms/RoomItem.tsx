@@ -6,9 +6,10 @@ import "./RoomItem.css";
 interface RoomItemProps {
   room: Room;
   onDelete: () => void;
+  onEdit: () => void;
 }
 
-const RoomItem = ({ room, onDelete }: RoomItemProps) => {
+const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
   const context = useContext(DataContext);
 
   if (!context) {
@@ -42,7 +43,8 @@ const RoomItem = ({ room, onDelete }: RoomItemProps) => {
           <TalkList talks={roomTalks} />
         </div>
       )}
-      <button onClick={onDelete}>Slett rom</button>
+      <button onClick={onEdit}>Edit room</button>
+      <button onClick={onDelete}>Delete room</button>
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import { getRooms, createRoom } from "../services/roomService";
+import { getRooms } from "../services/roomService";
 import { Room } from "../context/DataContext";
 
 export const fetchAndSetRooms = async (
