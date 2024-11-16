@@ -23,7 +23,7 @@ export const getSpeakers = async () => {
 };
 
 //Fetching specific speaker
-export const getSpecificSpeaker = async (id) => {
+export const getSpecificSpeaker = async (id: string) => {
   try {
     const response = await fetch(`${API_URL}/speakers/${id}`, {
       method: "GET",
@@ -66,5 +66,47 @@ export const createSpeaker = async (speakerData: any) => {
   } catch (error) {
     console.error(error);
     return null;
+  }
+};
+
+
+export const updateSpeaker = async (_uuid: string, speakerData: any) => {
+  try {
+    const response = await fetch(`${API_URL}/speakers/${speakerData.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+      body: JSON.stringify(speakerData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update speaker");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export const deleteSpeaker = async (id: string) => {
+  try {
+    const response = await fetch(`${API_URL}/speakers/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete speaker");
+    }
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 };

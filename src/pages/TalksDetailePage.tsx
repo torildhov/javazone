@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { DataContext, Talk } from "../context/DataContext";
-import { updateTalk } from "../services/TalksService";
+import { updateTalk, deleteTalk } from "../services/TalksService"; // Import deleteTalk
 import { useAuth } from "../../src/context/AuthContext";
 
 const TalksDetailePage = () => {
@@ -52,12 +52,24 @@ const TalksDetailePage = () => {
     }
   };
 
+  const handleDelete = async () => {
+    if (isAuthenticated) {
+      try {
+        await deleteTalk(id);
+        setTalks((prev) => prev.filter((t) => t._uuid !== id));
+        navigate('/talks');
+      } catch (error) {
+        console.error("Failed to delete talk", error);
+      }
+    }
+  };
+
   return (
     <div>
       <h1>Edit Talk</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Foredrag om:</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
@@ -67,7 +79,7 @@ const TalksDetailePage = () => {
           />
         </div>
         <div>
-          <label htmlFor="speakerId">Foredragholder:</label>
+          <label htmlFor="speakerId">Speaker ID:</label>
           <input
             type="text"
             id="speakerId"
@@ -77,7 +89,7 @@ const TalksDetailePage = () => {
           />
         </div>
         <div>
-          <label htmlFor="roomId">Room:</label>
+          <label htmlFor="roomId">Room ID:</label>
           <input
             type="text"
             id="roomId"
@@ -97,6 +109,7 @@ const TalksDetailePage = () => {
           />
         </div>
         <button type="submit">Save</button>
+        <button type="button" onClick={handleDelete}>Delete</button>
       </form>
     </div>
   );
