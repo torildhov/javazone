@@ -19,16 +19,19 @@ const RoomsList = () => {
 
   return (
     <div className="rooms-container">
-      {rooms.map((room) => (
-        <div
-          className="liRoomItem"
-          key={room._uuid}
-          onClick={() => handleRoomClick(room._uuid)}
-          style={{ cursor: "pointer" }}
-        >
-          <h2> {room.name}</h2>
-        </div>
-      ))}
+      {rooms
+        .slice() // Kopi av rooms
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((room) => (
+          <div
+            className="liRoomItem"
+            key={room._uuid || room.name}
+            onClick={() => room._uuid && handleRoomClick(room._uuid)}
+            style={{ cursor: "pointer" }}
+          >
+            <h2> {room.name}</h2>
+          </div>
+        ))}
     </div>
   );
 };

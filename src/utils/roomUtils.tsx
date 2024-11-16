@@ -1,24 +1,14 @@
 import { getRooms, createRoom } from "../services/roomService";
+import { Room } from "../context/DataContext";
 
-export const createInitialRooms = async () => {
+export const fetchAndSetRooms = async (
+  setRooms: (rooms: Room[]) => void
+): Promise<void> => {
   try {
-    const existingRooms = await getRooms();
-
-    if (existingRooms.items.length === 0) {
-      const defaultRooms = [
-        { name: "Room A", capacity: 50 },
-        { name: "Room B", capacity: 30 },
-        { name: "Room C", capacity: 100 },
-      ];
-
-      for (const room of defaultRooms) {
-        const result = await createRoom(room);
-        if (result) {
-          console.log(`Created room: ${room.name}`);
-        }
-      }
-    }
-  } catch (error) {
-    console.error("Error in createInitialRooms:", error);
+    const data = await getRooms(); // Hent oppdaterte rom fra API
+    const updatedRooms = data.items;
+    setRooms(updatedRooms); // Oppdater staten
+  } catch (err) {
+    console.error("Failed to fetch and set rooms:", err);
   }
 };
