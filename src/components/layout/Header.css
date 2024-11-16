@@ -78,6 +78,10 @@ nav.nav-open {
   border: 1px solid black;
 }
 
+nav.nav-open a:last-child {
+  margin-bottom: 0;
+}
+
 nav a {
     position: relative;
 }

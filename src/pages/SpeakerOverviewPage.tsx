@@ -13,7 +13,7 @@ const SpeakerOverviewPage = () => {
 
   return (
     <div>
-      <h1>Speaker Overview</h1>
+      <h1>Speakers</h1>
       {isLoading ? <p>Loading...</p> : <SpeakerList />}
     </div>
   );

@@ -18,22 +18,22 @@ export const Footer = () => {
       </div>
       <div className="footer-content">
         <div className="footer-section">
-          <h3>Hurtiglenker</h3>
+          <h3>Links</h3>
           <Link to="/speakers">Speakers</Link>
           <Link to="/talks">Talks</Link>
           <Link to="/rooms">Rooms</Link>
         </div>
 
         <div className="footer-section">
-          <h3>Nyhetsbrev</h3>
+          <h3>Newsletter</h3>
           <form className="newsletter-form">
-            <input type="email" placeholder="Din e-post" />
-            <button type="submit">Meld på</button>
+            <input type="email" placeholder="Your email" />
+            <button type="submit">Subscribe</button>
           </form>
         </div>
 
         <div className="footer-section">
-          <h3>Følg oss</h3>
+          <h3>Join us</h3>
           <div className="social-links">
             <a
               href="https://www.facebook.com/"

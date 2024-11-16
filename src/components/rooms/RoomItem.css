@@ -1,0 +1,22 @@
+.liRoomItem {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pRoomItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 250px;
+    height: 250px;
+    background-color: #ffffff;
+    color: black;
+}

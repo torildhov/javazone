@@ -36,7 +36,6 @@ export const CustomCursor = () => {
     };
 
     const onMouseLeave = (e: MouseEvent) => {
-      // Set the final position before hiding
       mouseX = e.clientX;
       mouseY = e.clientY;
       updateCursor();

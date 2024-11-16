@@ -1,15 +1,23 @@
 .liTalkItem {
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  margin-top: 40px;
+  padding: 20px;
 }
 
 .pTalkItem {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #000000;
   padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  line-height: 1, 5;
+  border-radius: 20px;
+  width: 250px;
+  height: 250px;
+  background-color: #ffffff;
+  color: black;
 }

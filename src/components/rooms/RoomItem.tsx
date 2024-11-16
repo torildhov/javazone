@@ -1,6 +1,7 @@
 import TalkList from "../talks/TalkList";
 import { DataContext, Room } from "../../context/DataContext";
 import { useContext } from "react";
+import "./RoomItem.css";
 
 interface RoomItemProps {
   room: Room;
@@ -27,18 +28,18 @@ const RoomItem = ({ room }: RoomItemProps) => {
   const roomTalks = getTalksForRoom(room._uuid);
 
   return (
-    <li>
-      <h2>
-        {room.name} (Kapasitet: {room.capacity})
-      </h2>
-      <h3>Foredrag:</h3>
+    <div className="pRoomItem">
+      <h2>{room.name}</h2>
+      <p>Capacity: {room.capacity}</p>
+      <h3>Talk:</h3>
       {roomTalks.length === 0 ? (
-        <p>Ingen foredrag planlagt.</p>
+        <p>No planned talks.</p>
       ) : (
         <TalkList talks={roomTalks} />
       )}
-    </li>
+    </div>
   );
+  
 };
 
 export default RoomItem;

@@ -13,8 +13,8 @@ const RoomOverviewPage = () => {
 
   return (
     <div>
-      <h1>Romoversikt</h1>
-      {isLoading ? <p>Laster...</p> : <RoomList />}
+      <h1>Rooms</h1>
+      {isLoading ? <p>Loading...</p> : <RoomList />}
     </div>
   );
 };
