@@ -1,5 +1,4 @@
 import RoomList from "../components/rooms/RoomList";
-import RoomsList from "../components/rooms/RoomsList";
 import { DataContext } from "../context/DataContext";
 import { useContext } from "react";
 

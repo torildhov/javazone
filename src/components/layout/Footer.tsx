@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
-import { HiOutlineArrowUp } from "react-icons/hi";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
