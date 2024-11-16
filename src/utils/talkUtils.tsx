@@ -4,17 +4,17 @@ export const createInitialTalks = async () => {
   try {
   const existingTalks = await getTalks();
 
-  if (existingTalks.length === 1) {
+  if (existingTalks.length === 0) {
     const defaultTalks = [
       {
         title: "HTML",
-        speaker: "Thomas Eriksson",
+   
         time: "20:00"
         
       },
       {
         title: "CSS",
-        speaker: "Camilla Lackberg",
+      
         time: "12:00"
         
       }];

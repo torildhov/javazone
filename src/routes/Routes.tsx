@@ -6,6 +6,7 @@ import SpeakerOverviewPage from "../pages/SpeakerOverviewPage";
 import TalksOverviewPage from "../pages/TalksOverviewPage";
 import { HomePage } from "../pages/HomePage";
 import RoomDetailsPage from "../pages/RoomDetailsPage";
+import TalksDetailePage from "../pages/TalksDetailePage";
 
 export const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route element={<ProtectedRoute />}>
         {/* Protected routes will go here */}
+        <Route path="/talks/:id/edit" element={<TalksDetailePage />} /> 
       </Route>
     </Routes>
   );
