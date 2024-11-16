@@ -67,26 +67,27 @@ export const createTalk = async (talkData: any) => {
     }
   };
 
-export const updateTalk = async (talkId: string, talkData: { title: string, speakerId: string, roomId: string, time: string }) => {
-  try {
-    const response = await fetch(`${API_URL}/talks/${talkId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify(talkData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to update talk");
+  export const updateTalk = async (_uuid: string, updatedData: any) => {
+    try {
+      const response = await fetch(`${API_URL}/talks/${_uuid}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+        body: JSON.stringify(updatedData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update talk");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error updating talk:", error);
+      return null;
     }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+  };
+  
 
 export const deleteTalk = async (talkId: string) => {
   try {
