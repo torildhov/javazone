@@ -1,8 +1,7 @@
 // Innloggingsskjema med validering, feilhåndtering og vis/skjul passord funksjonalitet
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext";import { FiEye, FiEyeOff } from "react-icons/fi";
 
 // Type-definisjoner for skjemadata og feilmeldinger
 type LoginFormData = {
