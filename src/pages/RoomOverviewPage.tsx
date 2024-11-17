@@ -2,8 +2,10 @@ import AddRoom from "../components/rooms/AddRoom";
 import RoomsList from "../components/rooms/RoomsList";
 import { DataContext } from "../context/DataContext";
 import { useContext } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const RoomOverviewPage = () => {
+  const { isAuthenticated } = useAuth();
   const context = useContext(DataContext);
 
   if (!context) {
@@ -16,8 +18,7 @@ const RoomOverviewPage = () => {
     <div>
       <h1>Rooms</h1>
       {isLoading ? <p>Loading...</p> : <RoomsList />}
-      {/*  AddRoom skal kreve innlogging: */}
-      <AddRoom />
+      {isAuthenticated && <AddRoom />}
     </div>
   );
 };
