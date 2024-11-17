@@ -1,5 +1,8 @@
 import { DataContext, Speaker } from "../../context/DataContext";
-import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useAuth } from "../../context/AuthContext";
+import "./SpeakerItem.css";
 
 interface SpeakerItemProps {
   speaker: Speaker;
@@ -7,7 +10,7 @@ interface SpeakerItemProps {
 
 const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
   const context = useContext(DataContext);
-  const [showDetails, setShowDetails] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   if (!context) {
     throw new Error("DataContext not found!");
@@ -20,44 +23,35 @@ const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
     (talk) => talk.speakerId === speaker._uuid
   );
 
-  const clickChosenSpeaker = () => {
-    setShowDetails(true); //showing the details
-  };
+  const navigate = useNavigate();
 
   const backButton = (overview: React.MouseEvent) => {
     overview.stopPropagation();
-    setShowDetails(false); //Hide the details
+    navigate(-1); //Hide the details
   };
 
   return (
-    <div>
-      {showDetails ? (
-        <div className="overlay">
-          <div className="speaker-detail">
-            <h2>{speaker.name}</h2>
-            <p>Biography: {speaker.biography}</p>
-            <h3>Talks</h3>
-            {getTalksforSpeaker.length > 0 ? (
-              <ul>
-                {getTalksforSpeaker.map((talk) => (
-                  <li key={talk._uuid}>
-                    <strong>{talk.title}</strong> - Room ID: {talk.roomId},
-                    Time: {talk.time}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No talks available for this speaker.</p>
-            )}
-            <button onClick={backButton}>Back to overview</button>
-          </div>
-        </div>
+    <div className="speaker-detail">
+      <h2> {speaker.name || "No Name Available"}</h2>
+      <p>Biography: {speaker.biography || "No biography available"}</p>
+      <br />
+      <h3>Talks:</h3>
+      {getTalksforSpeaker.length > 0 ? (
+        <ul>
+          {getTalksforSpeaker.map((talk) => (
+            <li key={talk._uuid}>
+              <strong>{talk.title}</strong> - Room ID: {talk.roomId}, Time:{" "}
+              {talk.time}
+            </li>
+          ))}
+        </ul>
       ) : (
-        <div onClick={clickChosenSpeaker} className="speaker-list">
-          <h2>{speaker.name}</h2>
-          <p>Biography: {speaker.biography}</p>
-        </div>
+        <p>No talks available for this speaker.</p>
       )}
+      {isAuthenticated && <button>Edit</button>}
+      {isAuthenticated && <button>Delete</button>}
+      <br />
+      <button onClick={backButton}>Back to overview</button>
     </div>
   );
 };
