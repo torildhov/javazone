@@ -33,28 +33,28 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
 
   return (
     <div className="liRoomItem">
-        <div className="room-details">
-            <h2>{room.name}</h2>
-            <p>Kapasitet: {room.capacity}</p>
-            <h3>Foredrag:</h3>
-            {roomTalks.length === 0 ? (
-                <p>No planned talks.</p>
-            ) : (
-                <TalkList talks={roomTalks} />
-            )}
-            <div className="room-buttons">
-                <button onClick={onEdit}>Edit room</button>
-                <button onClick={onDelete}>Delete room</button>
-            </div>
+      <div className="room-details">
+        <h2>{room.name}</h2>
+        <p>Kapasitet: {room.capacity}</p>
+        <h3>Foredrag:</h3>
+        {roomTalks.length === 0 ? (
+          <p>No planned talks.</p>
+        ) : (
+          <TalkList talks={roomTalks} />
+        )}
+        <div className="room-buttons">
+          <button onClick={onEdit}>Edit room</button>
+          <button onClick={onDelete}>Delete room</button>
         </div>
-      )}
+      </div>
+
       {isAuthenticated && (
         <div>
           <button onClick={onEdit}>Edit room</button>
           <button onClick={onDelete}>Delete room</button>
         </div>
       )}
-    </li>
+    </div>
   );
 };
 export default RoomItem;
