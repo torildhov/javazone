@@ -30,22 +30,23 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
   const roomTalks = getTalksForRoom(room._uuid || "");
 
   return (
-    <li>
-      <h2>
-        {room.name} (Kapasitet: {room.capacity})
-      </h2>
-      <h3>Foredrag:</h3>
-      {roomTalks.length === 0 ? (
-        <p>No planned talks.</p>
-      ) : (
-        <div>
-          <h3>Foredrag:</h3>
-          <TalkList talks={roomTalks} />
+    <div className="liRoomItem">
+        <div className="room-details">
+            <h2>{room.name}</h2>
+            <p>Kapasitet: {room.capacity}</p>
+            <h3>Foredrag:</h3>
+            {roomTalks.length === 0 ? (
+                <p>No planned talks.</p>
+            ) : (
+                <TalkList talks={roomTalks} />
+            )}
+            <div className="room-buttons">
+                <button onClick={onEdit}>Edit room</button>
+                <button onClick={onDelete}>Delete room</button>
+            </div>
         </div>
-      )}
-      <button onClick={onEdit}>Edit room</button>
-      <button onClick={onDelete}>Delete room</button>
-    </li>
-  );
+    </div>
+);
+
 };
 export default RoomItem;
