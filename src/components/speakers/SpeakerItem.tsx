@@ -6,9 +6,10 @@ import "./SpeakerItem.css";
 
 interface SpeakerItemProps {
   speaker: Speaker;
+  onDelete: () => void;
 }
 
-const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
+const SpeakerItem = ({ speaker, onDelete }: SpeakerItemProps) => {
   const context = useContext(DataContext);
   const { isAuthenticated } = useAuth();
 
@@ -49,7 +50,7 @@ const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
         <p>No talks available for this speaker.</p>
       )}
       {isAuthenticated && <button>Edit</button>}
-      {isAuthenticated && <button>Delete</button>}
+      {isAuthenticated && <button onClick={onDelete}>Delete</button>}
       <br />
       <button onClick={backButton}>Back to overview</button>
     </div>
