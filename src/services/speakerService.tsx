@@ -69,10 +69,9 @@ export const createSpeaker = async (speakerData: any) => {
   }
 };
 
-
 export const updateSpeaker = async (_uuid: string, speakerData: any) => {
   try {
-    const response = await fetch(`${API_URL}/speakers/${speakerData.id}`, {
+    const response = await fetch(`${API_URL}/speakers/${_uuid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +88,7 @@ export const updateSpeaker = async (_uuid: string, speakerData: any) => {
     console.error(error);
     return null;
   }
-}
+};
 
 export const deleteSpeaker = async (id: string) => {
   try {
