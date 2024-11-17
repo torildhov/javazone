@@ -1,11 +1,27 @@
-/*Speaker list css*/
-
 .speaker-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
   justify-content: center;
-  padding: 20px;
+  padding: 2rem;
+}
+
+.speaker-detail {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 20px;
+  flex: 0 1 calc(25% - 2rem);
+  min-width: 18rem;
+  text-align: center;
+  position: relative;
+  border: 1px solid black;
+}
+.overview-speaker {
+  transition: transform 0.2s ease;
+}
+
+.overview-speaker:hover {
+  transform: translateY(-4px);
 }
 
 .overlay {
@@ -28,20 +44,27 @@
   align-items: center;
   text-align: center;
   border: 1px solid #000000;
-  padding: 20px;
+  padding: 1.5rem;
   border-radius: 20px;
-  width: 250px;
-  height: 250px;
+  flex: 0 1 calc(25% - 2rem);
+  min-width: 18rem;
   background-color: #ffffff;
   color: black;
 }
 
-.speaker-detail {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 90%;
-  text-align: center;
-  position: relative;
+.speaker-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.edit-speaker-form,
+.add-speaker-form {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2rem;
+  width: calc(100% - 90rem);
+  margin: 1rem auto;
 }

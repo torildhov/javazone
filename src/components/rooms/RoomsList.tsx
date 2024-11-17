@@ -24,7 +24,7 @@ const RoomsList = () => {
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((room) => (
           <div
-            className="liRoomItem"
+            className="liRoomItem overview-room"
             key={room._uuid || room.name}
             onClick={() => room._uuid && handleRoomClick(room._uuid)}
             style={{ cursor: "pointer" }}

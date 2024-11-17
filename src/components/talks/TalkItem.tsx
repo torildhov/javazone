@@ -40,6 +40,7 @@ const TalkItem = ({ talk, onDelete, onEdit }: TalkItemProps) => {
       <p>Rom: {room ? room.name : "Rom ikke spesifisert"}</p>
       <button onClick={onEdit}>Rediger</button>
       <button onClick={onDelete}>Slett</button>
+
     </div>
   );
 };

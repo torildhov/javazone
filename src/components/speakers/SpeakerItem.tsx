@@ -50,8 +50,10 @@ const SpeakerItem = ({ speaker, onDelete, onEdit }: SpeakerItemProps) => {
       ) : (
         <p>No talks available for this speaker.</p>
       )}
-      {isAuthenticated && <button onClick={onEdit}>Edit</button>}
-      {isAuthenticated && <button onClick={onDelete}>Delete</button>}
+      <div className="speaker-buttons">
+        {isAuthenticated && <button onClick={onEdit}>Edit</button>}
+        {isAuthenticated && <button onClick={onDelete}>Delete</button>}
+      </div>
       <br />
       <button onClick={backButton}>Back to overview</button>
     </div>

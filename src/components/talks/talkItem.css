@@ -1,23 +1,57 @@
-.liTalkItem {
-  list-style-type: none;
+.talks-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
+  padding: 2rem;
   justify-content: center;
-  padding: 20px;
+  max-width: 87.5rem;
+  margin: 2.5rem auto 0;
 }
 
-.pTalkItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #000000;
-  padding: 20px;
+.talk-item {
+  flex: 0 1 calc(25% - 2rem);
+  min-width: 18rem;
+  background-color: white;
   border-radius: 20px;
-  width: 250px;
-  height: 250px;
-  background-color: #ffffff;
-  color: black;
+  border: 1px solid black;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.overview-talk {
+  transition: transform 0.2s ease;
+}
+
+.overview-talk:hover {
+  transform: translateY(-4px);
+}
+
+.single-talk-details .talk-item {
+  flex: none;
+  width: calc(100% - 35rem);
+  margin: 0 auto;
+}
+
+.talk-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.talk-item h2 {
+  margin-bottom: 1.5rem;
+}
+
+.talk-item p {
+  margin-bottom: 1rem;
+}
+
+.edit-talk-form {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2rem;
+  width: calc(100% - 90rem);
+  margin: 1rem auto;
 }

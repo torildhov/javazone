@@ -65,6 +65,7 @@ const newRoomId = prompt("Enter new room ID", talk.roomId);
 const newSpeakerId = prompt("Enter new speaker ID", talk.speakerId);
 const newTime = prompt("Enter new time", talk.time);
 
+
 if(!talk._uuid){
   console.error("Talk is missing or does not have an ID.");
   return;
@@ -79,7 +80,57 @@ if(newTilte && newRoomId && newSpeakerId && newTime){
   } catch (err) {
     console.error("Failed to update talk:", err);
   }
-}
+
+  return (
+    <div className="edit-talk-form">
+      <h1>Edit Talk</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="speakerId">Speaker ID:</label>
+          <input
+            type="text"
+            id="speakerId"
+            name="speakerId"
+            value={formData.speakerId}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="roomId">Room ID:</label>
+          <input
+            type="text"
+            id="roomId"
+            name="roomId"
+            value={formData.roomId}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="time">Time:</label>
+          <input
+            type="text"
+            id="time"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Save</button>
+        <button type="button" onClick={handleDelete}>Delete</button>
+      </form>
+    </div>
+  );
+
 };
 
 if(loading){

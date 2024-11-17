@@ -1,5 +1,6 @@
 import TalkList from "../talks/TalkList";
 import { DataContext, Room } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
 import { useContext } from "react";
 import "./RoomItem.css";
 
@@ -10,6 +11,7 @@ interface RoomItemProps {
 }
 
 const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
+  const { isAuthenticated } = useAuth();
   const context = useContext(DataContext);
 
   if (!context) {
@@ -17,6 +19,8 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
   }
 
   const { talks, speakers } = context;
+
+  console.log("Inne i roomItem", talks);
 
   const getTalksForRoom = (roomId: string) => {
     return talks
@@ -31,22 +35,24 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
 
   return (
     <div className="liRoomItem">
-        <div className="room-details">
-            <h2>{room.name}</h2>
-            <p>Kapasitet: {room.capacity}</p>
-            <h3>Foredrag:</h3>
-            {roomTalks.length === 0 ? (
-                <p>No planned talks.</p>
-            ) : (
-                <TalkList talks={roomTalks} />
-            )}
-            <div className="room-buttons">
-                <button onClick={onEdit}>Edit room</button>
-                <button onClick={onDelete}>Delete room</button>
-            </div>
+      <div className="room-details">
+        <h2>{room.name}</h2>
+        <p>Kapasitet: {room.capacity}</p>
+        <h3>Foredrag:</h3>
+        {roomTalks.length === 0 ? (
+          <p>No planned talks.</p>
+        ) : (
+          <TalkList talks={roomTalks} />
+        )}
+      </div>
+      {isAuthenticated && (
+        <div className="room-buttons">
+          <button onClick={onEdit}>Edit room</button>
+          <button onClick={onDelete}>Delete room</button>
         </div>
+      )}
     </div>
-);
-
+  );
 };
+
 export default RoomItem;

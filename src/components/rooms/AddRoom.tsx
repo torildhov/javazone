@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { createRoom } from "../../services/roomService";
 import { DataContext } from "../../context/DataContext";
 import { fetchAndSetRooms } from "../../utils/roomUtils";
@@ -11,7 +11,7 @@ const AddRoom: React.FC = () => {
   if (!context) {
     throw new Error("Finner ikke DataContext");
   }
-  const { rooms, setRooms } = context;
+  const { setRooms } = context;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,12 +29,8 @@ const AddRoom: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(rooms);
-  }, [rooms]);
-
   return (
-    <div>
+    <div className="add-room-form">
       <h2>Add Room</h2>
       <form action="">
         <input
