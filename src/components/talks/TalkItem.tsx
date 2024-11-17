@@ -1,21 +1,47 @@
-import { Speaker, Talk } from "../../context/DataContext";
+import { useContext } from "react";
+import { Talk, Speaker, Room, DataContext } from "../../context/DataContext";
 import "./talkItem.css";
 
 interface TalkItemProps {
-  talk: Talk & { speaker?: Speaker }; // `speaker` er valgfritt
+  talk: Talk & { speaker?: Speaker };
+  onDelete: () => void;
+  onEdit: () => void;
 }
 
-const TalkItem = ({ talk }: TalkItemProps) => {
+const TalkItem = ({ talk, onDelete, onEdit }: TalkItemProps) => {
+
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error("DataContext not found");
+  }
+
+  const { speakers, rooms } = context;
+
+  
+  const getRoomForTalk = (roomId: string): Room | undefined => {
+    return rooms.find((room) => room._uuid === roomId);
+  };
+
+  
+  const getSpeakerForTalk = (speakerId: string): Speaker | undefined => {
+    return speakers.find((speaker) => speaker._uuid === speakerId);
+  };
+
+
+
+  const room = getRoomForTalk(talk.roomId);
+  const speaker = getSpeakerForTalk(talk.speakerId);
+
   return (
     <div className="pTalkItem">
       <h2>{talk.title}</h2>
-      <p>Foredragsholder: {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}</p>
+      <p>Foredragsholder: {speaker ? speaker.name : "Ikke spesifisert"}</p>
       <p>Tid: {talk.time}</p>
+      <p>Rom: {room ? room.name : "Rom ikke spesifisert"}</p>
+      <button onClick={onEdit}>Rediger</button>
+      <button onClick={onDelete}>Slett</button>
     </div>
   );
 };
-
-
-
 
 export default TalkItem;
