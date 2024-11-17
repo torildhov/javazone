@@ -50,6 +50,13 @@ const SpeakerDetailsPage = () => {
       console.error("Unidentified speaker");
       return;
     }
+
+    // confirmation before deleting
+    const deleteConfirmed = window.confirm(
+      "Are you sure you want to delete this speaker?"
+    );
+    if (!deleteConfirmed) return;
+
     try {
       await deleteSpeaker(speaker._uuid);
       await fetchAndSetSpeakers(setSpeakers);
