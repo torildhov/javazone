@@ -39,17 +39,16 @@ const TalksDetailePage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isAuthenticated) {
+    if (editedSpeaker && editedSpeaker._uuid) {
       try {
-        await updateTalk(id, formData);
-        setTalks((prev) =>
-          prev.map((t) => (t._uuid === id ? { ...t, ...formData } : t))
-        );
-        navigate('/talks');
-      } catch (error) {
-        console.error("Failed to update talk", error);
+          await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
+          setSpeaker(editedSpeaker);
+          setIsEditing(false);
+      } catch (err) {
+          console.error("Failed to update speaker", err);
       }
-    }
+  }
+  
   };
 
   const handleDelete = async () => {
