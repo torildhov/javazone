@@ -8,6 +8,7 @@
     margin: 40px auto;
 }
 
+/* Base styles for all room boxes */
 .liRoomItem {
     flex: 0 1 300px;
     background-color: white;
@@ -16,6 +17,13 @@
     padding: 24px;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.overview-room {
+    transition: transform 0.2s ease;
+}
+
+.overview-room:hover {
+    transform: translateY(-4px);
 }
 
 .room-details h2 {
