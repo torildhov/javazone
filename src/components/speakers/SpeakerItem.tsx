@@ -21,29 +21,41 @@ const SpeakerItem = ({ speaker }: SpeakerItemProps) => {
   );
 
   const clickChosenSpeaker = () => {
-    setShowDetails(!showDetails);
+    setShowDetails(true); //showing the details
+  };
+
+  const backButton = (overview: React.MouseEvent) => {
+    overview.stopPropagation();
+    setShowDetails(false); //Hide the details
   };
 
   return (
-    <div onClick={clickChosenSpeaker} className="speaker-list">
-      <h2>{speaker.name}</h2>
-      <p>Biography: {speaker.biography}</p>
-
-      {showDetails && (
-        <div>
-          <h3>Talks</h3>
-          {getTalksforSpeaker.length > 0 ? (
-            <ul>
-              {getTalksforSpeaker.map((talk) => (
-                <li key={talk._uuid}>
-                  <strong>{talk.title}</strong> - Room ID: {talk.roomId}, Time:{" "}
-                  {talk.time}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No talks available for this speaker.</p>
-          )}
+    <div>
+      {showDetails ? (
+        <div className="overlay">
+          <div className="speaker-detail">
+            <h2>{speaker.name}</h2>
+            <p>Biography: {speaker.biography}</p>
+            <h3>Talks</h3>
+            {getTalksforSpeaker.length > 0 ? (
+              <ul>
+                {getTalksforSpeaker.map((talk) => (
+                  <li key={talk._uuid}>
+                    <strong>{talk.title}</strong> - Room ID: {talk.roomId},
+                    Time: {talk.time}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No talks available for this speaker.</p>
+            )}
+            <button onClick={backButton}>Back to overview</button>
+          </div>
+        </div>
+      ) : (
+        <div onClick={clickChosenSpeaker} className="speaker-list">
+          <h2>{speaker.name}</h2>
+          <p>Biography: {speaker.biography}</p>
         </div>
       )}
     </div>
