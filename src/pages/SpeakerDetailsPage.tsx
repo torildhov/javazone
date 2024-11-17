@@ -73,7 +73,7 @@ const SpeakerDetailsPage = () => {
   const handleEditSave = async () => {
     if (editedSpeaker) {
       try {
-        await updateSpeaker(editedSpeaker._uuid, editedSpeaker); // Assuming updateSpeaker updates the speaker in the backend
+        await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
         setSpeaker(editedSpeaker); // Update local state
         setIsEditing(false); // Exit edit mode
       } catch (err) {
