@@ -1,3 +1,5 @@
+import { Talk } from "../context/DataContext";
+
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -46,7 +48,7 @@ export const getTalk = async (talkId: string) => {
 };
 
 
-export const createTalk = async (talkData: any) => {
+export const createTalk = async (talkData: Talk) => {
     try {
       const response = await fetch(`${API_URL}/talks`, {
         method: "POST",
@@ -67,15 +69,23 @@ export const createTalk = async (talkData: any) => {
     }
   };
 
-  export const updateTalk = async (_uuid: string, updatedData: any) => {
+  export const updateTalk = async (
+    talkId: string,
+    title: string,
+    SpeakerId: string,
+    roomId: string,
+    time: string,
+  ) => {
     try {
-      const response = await fetch(`${API_URL}/talks/${_uuid}`, {
+      console.log("Updating talk with data:", updateTalk);
+      const response = await fetch(`${API_URL}/talks/${talkId}`, {
+
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${API_KEY}`,
         },
-        body: JSON.stringify(updatedData),
+        body: JSON.stringify({talkId, title, SpeakerId,roomId, time}),
       });
   
       if (!response.ok) {
