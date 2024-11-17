@@ -9,8 +9,8 @@ const TalkItem = ({ talk }: TalkItemProps) => {
   return (
     <div className="pTalkItem">
       <h2>{talk.title}</h2>
-      <p>Foredragsholder: {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}</p>
-      <p>Tid: {talk.time}</p>
+      <p>Speaker: {talk.speaker ? talk.speaker.name : "Ikke spesifisert"}</p>
+      <p>Time: {talk.time}</p>
     </div>
   );
 };
