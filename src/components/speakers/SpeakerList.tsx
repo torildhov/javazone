@@ -24,7 +24,7 @@ const SpeakerList = () => {
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((speaker) => (
           <div
-            className="speaker-detail"
+            className="speaker-detail overview-speaker"
             key={speaker._uuid || speaker.name}
             onClick={() => speaker._uuid && handleSpeakerClick(speaker._uuid)}
             style={{ cursor: "pointer" }}

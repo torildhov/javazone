@@ -11,7 +11,7 @@ const TalkList = ({ talks }: { talks: Talk[] }) => {
   return (
     <div className="talks-container">
       {talks.map((talk) => (
-        <div key={talk._uuid} className="talk-item">
+        <div key={talk._uuid} className="talk-item overview-talk">
           <h2>{talk.title}</h2>
           <p>Time: {talk.time}</p>
           <p>Room: {talk.roomId}</p>

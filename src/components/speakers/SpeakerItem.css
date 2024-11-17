@@ -16,6 +16,13 @@
     position: relative;
     border: 1px solid black;
 }
+.overview-speaker {
+  transition: transform 0.2s ease;
+}
+
+.overview-speaker:hover {
+  transform: translateY(-4px);
+}
 
 .overlay {
     position: fixed;

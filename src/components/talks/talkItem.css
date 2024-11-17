@@ -18,6 +18,14 @@
   text-align: center;
 }
 
+.overview-talk {
+  transition: transform 0.2s ease;
+}
+
+.overview-talk:hover {
+  transform: translateY(-4px);
+}
+
 .single-talk-details .talk-item {
   flex: none;
   width: calc(100% - 35rem);
