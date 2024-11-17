@@ -1,6 +1,6 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
-import SpeakerItem from "./SpeakerItem";
 import "./SpeakerItem.css";
 
 const SpeakerList = () => {
@@ -11,12 +11,28 @@ const SpeakerList = () => {
   }
 
   const { speakers } = context;
+  const navigate = useNavigate();
+
+  const handleSpeakerClick = (id: string) => {
+    navigate(`/speakers/${id}`);
+  };
 
   return (
     <div className="speaker-container">
-      {speakers.map((speaker) => (
-        <SpeakerItem key={speaker._uuid} speaker={speaker} />
-      ))}
+      {speakers
+        .slice()
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((speaker) => (
+          <div
+            className="speaker-detail"
+            key={speaker._uuid || speaker.name}
+            onClick={() => speaker._uuid && handleSpeakerClick(speaker._uuid)}
+            style={{ cursor: "pointer" }}
+          >
+            <h2> {speaker.name}</h2>
+            <p>Biography: {speaker.biography}</p>
+          </div>
+        ))}
     </div>
   );
 };
