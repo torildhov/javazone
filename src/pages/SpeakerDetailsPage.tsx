@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext, Speaker } from "../context/DataContext";
-import { getSpecificSpeaker } from "../services/speakerService";
+import { deleteSpeaker, getSpecificSpeaker } from "../services/speakerService";
 import { fetchAndSetSpeakers } from "../utils/speakerUtils";
 import SpeakerItem from "../components/speakers/SpeakerItem";
 
@@ -38,6 +38,21 @@ const SpeakerDetailsPage = () => {
     fetchSpeaker();
   }, [id]);
 
+  //Delete speaker
+  const handleDelete = async () => {
+    if (!speaker || !speaker._uuid) {
+      console.error("Unidentified speaker");
+      return;
+    }
+    try {
+      await deleteSpeaker(speaker._uuid);
+      await fetchAndSetSpeakers(setSpeakers);
+      navigate("/speakers");
+    } catch (err) {
+      console.error("Failed to delete the speaker", err);
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -47,7 +62,7 @@ const SpeakerDetailsPage = () => {
 
   return (
     <div className="speaker-container">
-      <SpeakerItem speaker={speaker} />
+      <SpeakerItem speaker={speaker} onDelete={handleDelete} />
     </div>
   );
 };
