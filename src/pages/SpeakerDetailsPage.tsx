@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext, Speaker } from "../context/DataContext";
-import { deleteSpeaker, getSpecificSpeaker } from "../services/speakerService";
+import {
+  deleteSpeaker,
+  getSpecificSpeaker,
+  updateSpeaker,
+} from "../services/speakerService";
 import { fetchAndSetSpeakers } from "../utils/speakerUtils";
 import SpeakerItem from "../components/speakers/SpeakerItem";
 
@@ -17,6 +21,8 @@ const SpeakerDetailsPage = () => {
 
   const [speaker, setSpeaker] = useState<Speaker | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedSpeaker, setEditedSpeaker] = useState<Speaker | null>(null);
 
   //Fetching specific speaker
   useEffect(() => {
@@ -53,6 +59,29 @@ const SpeakerDetailsPage = () => {
     }
   };
 
+  // Edit Speaker
+  const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (editedSpeaker) {
+      setEditedSpeaker({
+        ...editedSpeaker,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+
+  // Save button for Editing
+  const handleEditSave = async () => {
+    if (editedSpeaker) {
+      try {
+        await updateSpeaker(editedSpeaker._uuid, editedSpeaker); // Assuming updateSpeaker updates the speaker in the backend
+        setSpeaker(editedSpeaker); // Update local state
+        setIsEditing(false); // Exit edit mode
+      } catch (err) {
+        console.error("Failed to update speaker", err);
+      }
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -62,7 +91,44 @@ const SpeakerDetailsPage = () => {
 
   return (
     <div className="speaker-container">
-      <SpeakerItem speaker={speaker} onDelete={handleDelete} />
+      {isEditing ? (
+        // Edit form
+        <div className="edit-speaker-form">
+          <h2>Edit Speaker</h2>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={editedSpeaker?.name || ""}
+                onChange={handleEdit}
+              />
+            </div>
+            <div>
+              <label>Biography:</label>
+              <input
+                type="text"
+                name="biography"
+                value={editedSpeaker?.biography || ""}
+                onChange={handleEdit}
+              />
+            </div>
+            <button type="button" onClick={handleEditSave}>
+              Save Changes
+            </button>
+            <button type="button" onClick={() => setIsEditing(false)}>
+              Cancel
+            </button>
+          </form>
+        </div>
+      ) : (
+        <SpeakerItem
+          speaker={speaker}
+          onDelete={handleDelete}
+          onEdit={() => setIsEditing(true)}
+        />
+      )}
     </div>
   );
 };
