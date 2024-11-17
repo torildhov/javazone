@@ -1,5 +1,6 @@
 import TalkList from "../talks/TalkList";
 import { DataContext, Room } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
 import { useContext } from "react";
 import "./RoomItem.css";
 
@@ -10,6 +11,7 @@ interface RoomItemProps {
 }
 
 const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
+  const { isAuthenticated } = useAuth();
   const context = useContext(DataContext);
 
   if (!context) {
@@ -45,8 +47,14 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
                 <button onClick={onDelete}>Delete room</button>
             </div>
         </div>
-    </div>
-);
-
+      )}
+      {isAuthenticated && (
+        <div>
+          <button onClick={onEdit}>Edit room</button>
+          <button onClick={onDelete}>Delete room</button>
+        </div>
+      )}
+    </li>
+  );
 };
 export default RoomItem;
