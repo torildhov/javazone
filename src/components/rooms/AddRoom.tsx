@@ -30,7 +30,7 @@ const AddRoom: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="add-room-form">
       <h2>Add Room</h2>
       <form action="">
         <input

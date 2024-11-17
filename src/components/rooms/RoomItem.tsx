@@ -46,7 +46,7 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
         )}
       </div>
       {isAuthenticated && (
-        <div>
+        <div className="room-buttons">
           <button onClick={onEdit}>Edit room</button>
           <button onClick={onDelete}>Delete room</button>
         </div>
