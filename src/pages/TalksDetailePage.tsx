@@ -21,21 +21,36 @@ const { setTalks } = context;
 const [talk, setTalk] = useState<Talk | null>(null);
 const [loading, setLoading] = useState<boolean>(true);
 
-useEffect(() => {
-  const fetchTalk = async () => {
-    if (!id) {
-      console.error("Talk ID is missing");
-      setLoading(false);
-      return;
+  useEffect(() => {
+    if (talk) {
+      setFormData(talk);
     }
-    try {
-      const fetchedTalk = await getTalk(id);
-      setTalk(fetchedTalk);
-    } catch (err) {
-      console.error("Failed to fetch talk:", err);
-    } finally {
-      setLoading(false);
-    }
+  }, [talk]);
+
+  if (!talk) {
+    return <p>Talk not found</p>;
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editedSpeaker && editedSpeaker._uuid) {
+      try {
+          await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
+          setSpeaker(editedSpeaker);
+          setIsEditing(false);
+      } catch (err) {
+          console.error("Failed to update speaker", err);
+      }
+  }
+  
   };
   fetchTalk();
 }, [id]);

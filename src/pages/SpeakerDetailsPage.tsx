@@ -84,7 +84,7 @@ const SpeakerDetailsPage = () => {
 
   // Save button for Editing
   const handleEditSave = async () => {
-    if (editedSpeaker) {
+    if (editedSpeaker && editedSpeaker._uuid) {
       try {
         await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
         setSpeaker(editedSpeaker); // Updating the speaker with the new data
@@ -105,8 +105,7 @@ const SpeakerDetailsPage = () => {
   return (
     <div className="speaker-container">
       {isEditing ? (
-        // Edit form
-        <div>
+        <div className="edit-speaker-form">
           <h2>Edit Speaker</h2>
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
