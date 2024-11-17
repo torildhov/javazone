@@ -1,4 +1,5 @@
 import { getSpeakers, createSpeaker } from "../services/speakerService";
+import { Speaker } from "../context/DataContext";
 
 export const createInitialSpeakers = async () => {
   const existingSpeakers = await getSpeakers();
@@ -16,5 +17,17 @@ export const createInitialSpeakers = async () => {
         console.log(`Speaker created: ${speaker.name}`);
       }
     }
+  }
+};
+
+export const fetchAndSetSpeakers = async (
+  setSpeakers: (speakers: Speaker[]) => void
+): Promise<void> => {
+  try {
+    const data = await getSpeakers();
+    const updatedSpeakers = data.items;
+    setSpeakers(updatedSpeakers);
+  } catch (err) {
+    console.error("Failed to fetch and set speakers:", err);
   }
 };
