@@ -1,28 +1,33 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Talk } from '../../context/DataContext';
+import "./TalkItem.css";
+
 
 const TalkList = ({ talks }: { talks: Talk[] }) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   return (
-    <ul className="talk-list">
+    <div className="talks-container">
       {talks.map((talk) => (
-        <li key={talk._uuid} className="talk-item">
+        <div key={talk._uuid} className="talk-item overview-talk">
           <h2>{talk.title}</h2>
           <p>Time: {talk.time}</p>
-          <p>Rom: {talk.roomId}</p>
-          <p>Foredragholder: {talk.speakerId}</p>
+          <p>Room: {talk.roomId}</p>
+          <p>Speaker: {talk.speakerId}</p>
           {isAuthenticated && (
-            <button onClick={() => navigate(`/talks/${talk._uuid}/edit`)}>
-              Edit
-            </button>
+            <div className="talk-buttons">
+              <button onClick={() => navigate(`/talks/${talk._uuid}/edit`)}>
+                Edit talk
+              </button>
+            </div>
           )}
-        </li>
+        </div>
       ))}
-    </ul>
-  );
+    </div>
+);
+
 };
 
 export default TalkList;

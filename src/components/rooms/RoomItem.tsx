@@ -20,6 +20,8 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
 
   const { talks, speakers } = context;
 
+  console.log("Inne i roomItem", talks);
+
   const getTalksForRoom = (roomId: string) => {
     return talks
       .filter((talk) => talk.roomId === roomId)
@@ -42,12 +44,7 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
         ) : (
           <TalkList talks={roomTalks} />
         )}
-        <div className="room-buttons">
-          <button onClick={onEdit}>Edit room</button>
-          <button onClick={onDelete}>Delete room</button>
-        </div>
       </div>
-
       {isAuthenticated && (
         <div>
           <button onClick={onEdit}>Edit room</button>
@@ -57,4 +54,5 @@ const RoomItem = ({ room, onDelete, onEdit }: RoomItemProps) => {
     </div>
   );
 };
+
 export default RoomItem;

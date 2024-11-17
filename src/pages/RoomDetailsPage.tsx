@@ -4,7 +4,7 @@ import { DataContext, Room } from "../context/DataContext";
 import RoomItem from "../components/rooms/RoomItem";
 import { deleteRoom, getRoom, updateRoom } from "../services/roomService";
 import { fetchAndSetRooms } from "../utils/roomUtils";
-import "../components/rooms/RoomItem.css";
+import "../components/rooms/RoomItem.css"
 
 
 const RoomDetailsPage = () => {
