@@ -46,3 +46,12 @@
 .talk-item p {
   margin-bottom: 1rem;
 }
+
+.edit-talk-form {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2rem;
+  width: calc(100% - 90rem);
+  margin: 1rem auto;
+}

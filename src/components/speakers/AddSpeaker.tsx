@@ -41,7 +41,7 @@ const AddSpeaker: React.FC = () => {
   }, [speakers]);
 
   return (
-    <div>
+    <div className="add-speaker-form">
       <h2>Add Speaker</h2>
       <form action="">
         <input

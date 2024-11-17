@@ -65,7 +65,7 @@ const TalksDetailePage = () => {
   };
 
   return (
-    <div>
+    <div className="edit-talk-form">
       <h1>Edit Talk</h1>
       <form onSubmit={handleSubmit}>
         <div>
