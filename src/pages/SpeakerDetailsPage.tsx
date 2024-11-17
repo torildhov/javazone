@@ -60,7 +60,13 @@ const SpeakerDetailsPage = () => {
   };
 
   // Edit Speaker
-  const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEdit = () => {
+    setEditedSpeaker(speaker);
+    setIsEditing(true);
+  };
+
+  //Handle Input Changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (editedSpeaker) {
       setEditedSpeaker({
         ...editedSpeaker,
@@ -74,7 +80,7 @@ const SpeakerDetailsPage = () => {
     if (editedSpeaker) {
       try {
         await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
-        setSpeaker(editedSpeaker); // Update local state
+        setSpeaker(editedSpeaker); // Updating the speaker with the new data
         setIsEditing(false); // Exit edit mode
       } catch (err) {
         console.error("Failed to update speaker", err);
@@ -93,7 +99,7 @@ const SpeakerDetailsPage = () => {
     <div className="speaker-container">
       {isEditing ? (
         // Edit form
-        <div className="edit-speaker-form">
+        <div>
           <h2>Edit Speaker</h2>
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
@@ -102,7 +108,7 @@ const SpeakerDetailsPage = () => {
                 type="text"
                 name="name"
                 value={editedSpeaker?.name || ""}
-                onChange={handleEdit}
+                onChange={handleInputChange}
               />
             </div>
             <div>
@@ -111,7 +117,7 @@ const SpeakerDetailsPage = () => {
                 type="text"
                 name="biography"
                 value={editedSpeaker?.biography || ""}
-                onChange={handleEdit}
+                onChange={handleInputChange}
               />
             </div>
             <button type="button" onClick={handleEditSave}>
@@ -126,7 +132,7 @@ const SpeakerDetailsPage = () => {
         <SpeakerItem
           speaker={speaker}
           onDelete={handleDelete}
-          onEdit={() => setIsEditing(true)}
+          onEdit={handleEdit}
         />
       )}
     </div>
