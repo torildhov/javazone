@@ -8,8 +8,8 @@ import { useEffect } from "react";
 import { createInitialSpeakers } from "./utils/speakerUtils";
 import { DataProvider } from "./context/DataContext";
 import { AppRoutes } from "./routes/Routes";
-import NeatBackground from "./components/AnimatedBackground";
-import { CustomCursor } from "./components/CustomCursor";
+import NeatBackground from "./components/layout/AnimatedBackground";
+import { CustomCursor } from "./components/layout/CustomCursor";
 
 function App() {
   useEffect(() => {
