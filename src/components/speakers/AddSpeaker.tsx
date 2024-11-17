@@ -32,7 +32,7 @@ const AddSpeaker: React.FC = () => {
         console.error("Unable to add speaker", error);
       }
     } else {
-      console.log("All fields must be filled out!");
+      alert("All fields must be filled out!");
     }
   };
 
