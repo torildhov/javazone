@@ -36,10 +36,6 @@ const AddSpeaker: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(speakers);
-  }, [speakers]);
-
   return (
     <div className="add-speaker-form">
       <h2>Add Speaker</h2>

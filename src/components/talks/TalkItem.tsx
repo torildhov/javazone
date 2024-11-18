@@ -29,9 +29,6 @@ const TalkItem = ({ talk, onDelete, onEdit }: TalkItemProps) => {
   const room = getRoomForTalk(talk.roomId);
   const speaker = getSpeakerForTalk(talk.speakerId);
 
-  console.log("Inne i talkItem, room:", room);
-  console.log("Inne i talkItem, speaker:", speaker);
-
   const backButton = (overview: React.MouseEvent) => {
     overview.stopPropagation();
     navigate("/talks");
