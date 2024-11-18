@@ -15,6 +15,7 @@ export const AppRoutes = () => {
       <Route path="/speakers" element={<SpeakerOverviewPage />} />
       <Route path="/speakers/:id" element={<SpeakerDetailsPage />} />
       <Route path="/talks" element={<TalksOverviewPage />} />
+      <Route path="/talks/:id" element={<TalksDetailePage />} />
       <Route path="/rooms" element={<RoomOverviewPage />} />
       <Route path="/rooms/:id" element={<RoomDetailsPage />} />
       <Route path="/login" element={<LoginPage />} />
