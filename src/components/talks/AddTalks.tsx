@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import { createTalk } from "../../services/TalksService";
 import { DataContext } from "../../context/DataContext";
 import { fetchAndSetTalks } from "../../utils/talkUtils";
+import './talkItem.css';
+
 
 const AddTalk: React.FC = () => {
   const [newTalkTitle, setNewTalkTitle] = useState<string>("");
@@ -47,7 +49,7 @@ const AddTalk: React.FC = () => {
   }, [talks]);
 
   return (
-    <div>
+    <div className="add-talk-form">
       <h1>Add New Talk</h1>
       <form onSubmit={handleSubmit}>
         {/* Tittel */}
