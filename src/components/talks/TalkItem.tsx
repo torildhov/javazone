@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Talk, Speaker, Room, DataContext } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import "./talkItem.css";
+import { useAuth } from "../../context/AuthContext";
 
 interface TalkItemProps {
   talk: Talk & { speaker?: Speaker };
@@ -10,6 +11,7 @@ interface TalkItemProps {
 }
 
 const TalkItem = ({ talk, onDelete, onEdit }: TalkItemProps) => {
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const context = useContext(DataContext);
   if (!context) {
@@ -40,10 +42,12 @@ const TalkItem = ({ talk, onDelete, onEdit }: TalkItemProps) => {
       <p>Foredragsholder: {speaker ? speaker.name : "Ikke spesifisert"}</p>
       <p>Tid: {talk.time}</p>
       <p>Rom: {room ? room.name : "Rom ikke spesifisert"}</p>
-      <div className="talk-buttons">
-        <button onClick={onEdit}>Rediger</button>
-        <button onClick={onDelete}>Slett</button>
-      </div>
+      {isAuthenticated && (
+        <div className="talk-buttons">
+          <button onClick={onEdit}>Edit talk</button>
+          <button onClick={onDelete}>Delete talk</button>
+        </div>
+      )}
       <br />
       <button onClick={backButton}>Back to Overview</button>
     </div>
