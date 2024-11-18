@@ -1,13 +1,11 @@
-import { useState, useContext, useEffect } from "react";
-import { createTalk } from "../../services/TalksService";
+import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
+import { createTalk } from "../../services/TalksService";
 import { fetchAndSetTalks } from "../../utils/talkUtils";
-import "./talkItem.css";
 
 const AddTalk: React.FC = () => {
   const [newTalkTitle, setNewTalkTitle] = useState<string>("");
   const [newRoom, setNewRoom] = useState<string>("");
-  const [newDate, setNewDate] = useState<string>("");
   const [newTime, setNewTime] = useState<string>("");
   const [newSpeaker, setNewSpeaker] = useState<string>("");
 
@@ -22,17 +20,15 @@ const AddTalk: React.FC = () => {
     const title = String(newTalkTitle);
     const speakerId = String(newSpeaker);
     const roomId = String(newRoom);
-    const date = String(newDate);
     const time = String(newTime);
 
-    if (title && speakerId && roomId && date && time) {
-      const newTalk = { title, speakerId, roomId, date, time };
+    if (title && speakerId && roomId && time) {
+      const newTalk = { title, speakerId, roomId, time };
       try {
         await createTalk(newTalk);
         await fetchAndSetTalks(setTalks);
         setNewTalkTitle("");
         setNewRoom("");
-        setNewDate("");
         setNewTime("");
         setNewSpeaker("");
       } catch (error) {
@@ -42,6 +38,10 @@ const AddTalk: React.FC = () => {
       alert("All fields are required");
     }
   };
+
+  useEffect(() => {
+    console.log(talks);
+  }, [talks]);
 
   return (
     <div className="add-talk-form">
@@ -93,17 +93,7 @@ const AddTalk: React.FC = () => {
             ))}
           </select>
         </div>
-        {/* Dato */}
-        <div>
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            value={newDate}
-            onChange={(e) => setNewDate(e.target.value)}
-          />
-        </div>
-        {/* Klokkeslett */}
+        {/* Time */}
         <div>
           <label htmlFor="time">Time:</label>
           <input
@@ -113,7 +103,6 @@ const AddTalk: React.FC = () => {
             onChange={(e) => setNewTime(e.target.value)}
           />
         </div>
-        {/* Submit */}
         <button type="submit">Add Talk</button>
       </form>
     </div>
@@ -121,3 +110,4 @@ const AddTalk: React.FC = () => {
 };
 
 export default AddTalk;
+
