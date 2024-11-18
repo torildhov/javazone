@@ -4,7 +4,11 @@ import { DataContext, Talk } from "../../context/DataContext";
 import "./TalkItem.css";
 import { useContext } from "react";
 
-const TalkList = () => {
+interface TalkListProps {
+  talks: Talk[];
+}
+
+const TalkList: React.FC<TalkListProps> = ({ talks }) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -14,7 +18,7 @@ const TalkList = () => {
     throw new Error("Finner ikke DataContext");
   }
 
-  const { rooms, talks, speakers } = context;
+  const { rooms, speakers } = context;
 
   return (
     <div className="talks-container">
@@ -45,3 +49,4 @@ const TalkList = () => {
 };
 
 export default TalkList;
+
