@@ -50,7 +50,7 @@ const AddRoom: React.FC = () => {
         />
 
         <button type="submit" onClick={(e) => handleSubmit(e)}>
-          Add new room
+          Add room
         </button>
       </form>
     </div>

@@ -42,7 +42,7 @@ const EditTalk: React.FC<EditTalkProps> = ({ talk, onClose, onUpdate }) => {
   };
 
   return (
-    <div className="edit-talk-form">
+    <div>
       <h2>Edit Talk</h2>
       <form onSubmit={handleSubmit}>
         <div>

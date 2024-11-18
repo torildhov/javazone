@@ -84,7 +84,7 @@ const TalksDetailPage = () => {
       {loading ? (
         <p>Loading...</p>
       ) : talk ? (
-        <div className="rooms-container single-room-container">
+        <div className="single-talk-container">
           {isEditing ? (
             <EditTalk
               talk={talk}
