@@ -2,10 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 2rem;
   justify-content: center;
-  max-width: 87.5rem;
-  margin: 2.5rem auto 0;
+  padding: 2rem;
 }
 
 .talk-item {
@@ -26,10 +24,13 @@
   transform: translateY(-4px);
 }
 
-.single-talk-details .talk-item {
-  flex: none;
-  width: calc(100% - 35rem);
-  margin: 0 auto;
+.single-talk-container {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2rem;
+  width: calc(100% - 60rem);
+  margin: 1rem auto;
 }
 
 .talk-buttons {
@@ -39,20 +40,12 @@
   margin-top: 1.5rem;
 }
 
-.talk-item h2 {
-  margin-bottom: 1.5rem;
-}
-
-.talk-item p {
-  margin-bottom: 1rem;
-}
-
 .edit-talk-form {
   background-color: white;
   border: 1px solid black;
   border-radius: 20px;
   padding: 2rem;
-  width: calc(100% - 0rem);
+  width: calc(100% - 10rem);
   margin: 1rem auto;
 }
 

@@ -51,7 +51,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
     return (
-        <div className="edit-talk-form">
+        <div>
             <h2>Edit Talk</h2>
             <form onSubmit={handleSubmit}>
                 <div>

@@ -61,7 +61,7 @@ const AddSpeaker: React.FC = () => {
         />
 
         <button type="submit" onClick={(e) => handleSubmit(e)}>
-          Add new speaker
+          Add speaker
         </button>
       </form>
     </div>

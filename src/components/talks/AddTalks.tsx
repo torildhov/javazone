@@ -50,7 +50,7 @@ const AddTalk: React.FC = () => {
 
   return (
     <div className="add-talk-form">
-      <h1>Add New Talk</h1>
+      <h1>Add Talk</h1>
       <form onSubmit={handleSubmit}>
         {/* Tittel */}
         <div>
