@@ -86,7 +86,8 @@ const SpeakerDetailsPage = () => {
   const handleEditSave = async () => {
     if (editedSpeaker && editedSpeaker._uuid) {
       try {
-        await updateSpeaker(editedSpeaker._uuid, editedSpeaker);
+        await updateSpeaker(editedSpeaker._uuid, editedSpeaker); // Update API
+        await fetchAndSetSpeakers(setSpeakers); // Oppdaterer context
         setSpeaker(editedSpeaker); // Updating the speaker with the new data
         setIsEditing(false); // Exit edit mode
       } catch (err) {
