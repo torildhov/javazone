@@ -12,7 +12,7 @@ const TalksDetailPage = () => {
 
   const context = useContext(DataContext);
   if (!context) throw new Error("DataContext not found!");
-  
+
   const { setTalks } = context;
 
   const [talk, setTalk] = useState<Talk | null>(null);
@@ -60,15 +60,20 @@ const TalksDetailPage = () => {
   const handleUpdate = async (updatedTalk: Talk) => {
     if (!updatedTalk._uuid) return;
     try {
-        await updateTalk(updatedTalk._uuid, updatedTalk.title, updatedTalk.roomId, updatedTalk.speakerId, updatedTalk.time);
-        setTalk(updatedTalk);
-        setIsEditing(false);
-
-        await fetchAndSetTalks(setTalks);
+      await updateTalk(
+        updatedTalk._uuid,
+        updatedTalk.title,
+        updatedTalk.speakerId,
+        updatedTalk.roomId,
+        updatedTalk.time
+      ); // Oppdaterer API
+      await fetchAndSetTalks(setTalks); // Oppdaterer context
+      setTalk(updatedTalk);
+      setIsEditing(false);
     } catch (error) {
-        console.error("Failed to update talk:", error);
+      console.error("Failed to update talk:", error);
     }
-};
+  };
 
   const handleCloseEdit = () => {
     setIsEditing(false);
@@ -81,16 +86,16 @@ const TalksDetailPage = () => {
       ) : talk ? (
         <div className="rooms-container single-room-container">
           {isEditing ? (
-            <EditTalk 
-              talk={talk} 
-              onClose={handleCloseEdit} 
+            <EditTalk
+              talk={talk}
+              onClose={handleCloseEdit}
               onUpdate={handleUpdate}
             />
           ) : (
-            <TalkItem 
-              talk={talk} 
-              onDelete={handleDelete} 
-              onEdit={handleStartEdit} 
+            <TalkItem
+              talk={talk}
+              onDelete={handleDelete}
+              onEdit={handleStartEdit}
             />
           )}
         </div>
@@ -102,4 +107,3 @@ const TalksDetailPage = () => {
 };
 
 export default TalksDetailPage;
-
