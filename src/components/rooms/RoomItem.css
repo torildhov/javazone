@@ -10,13 +10,15 @@
 
 
 .liRoomItem {
-    flex: 0 1 300px;
+    flex: 0 1 calc(25% - 2rem);
     background-color: white;
     border-radius: 20px;
     border: 1px solid black;
     padding: 24px;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+ 
 }
 .overview-room {
     transition: transform 0.2s ease;
@@ -50,6 +52,11 @@ li {
 .single-room-container .liRoomItem {
     flex: none;
     margin: 0 auto;
+}
+
+.single-rooms-container{
+    width: calc(100% - 90rem);
+    margin: 1rem auto;
 }
 
 .room-details {

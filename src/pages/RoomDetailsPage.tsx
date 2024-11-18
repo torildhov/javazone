@@ -95,7 +95,7 @@ const RoomDetailsPage = () => {
   }
 
   return (
-    <div className="rooms-container">
+    <div className="single-rooms-container">
       <RoomItem room={room} onDelete={handleDelete} onEdit={handleEdit} />
     </div>
   );

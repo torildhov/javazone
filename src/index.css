@@ -70,3 +70,13 @@ input,
 select {
   cursor: none !important;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 1rem;
+}
