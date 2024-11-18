@@ -2,8 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { createTalk } from "../../services/TalksService";
 import { DataContext } from "../../context/DataContext";
 import { fetchAndSetTalks } from "../../utils/talkUtils";
-import './talkItem.css';
-
+import "./talkItem.css";
 
 const AddTalk: React.FC = () => {
   const [newTalkTitle, setNewTalkTitle] = useState<string>("");
@@ -43,10 +42,6 @@ const AddTalk: React.FC = () => {
       alert("All fields are required");
     }
   };
-
-  useEffect(() => {
-    console.log(talks);
-  }, [talks]);
 
   return (
     <div className="add-talk-form">

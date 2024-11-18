@@ -15,9 +15,6 @@ const TalkList: React.FC = () => {
   }
 
   const { talks, rooms, speakers } = context;
-  console.log("Talks:", talks); // fungerer
-  console.log("Speakers:", speakers); //fungerer
-  console.log("Rooms:", rooms); //fungerer
 
   return (
     <div className="talks-container">
@@ -26,8 +23,6 @@ const TalkList: React.FC = () => {
         const speaker = speakers.find(
           (speaker) => speaker._uuid === talk.speakerId
         );
-        console.log("Inne i map speaker:", speaker); // undefined
-        console.log("Inne i map room:", room); //undefined
 
         return (
           <div key={talk._uuid} className="talk-item overview-talk">
