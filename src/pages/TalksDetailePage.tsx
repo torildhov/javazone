@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DataContext, Talk } from "../context/DataContext";
 import TalkItem from "../components/talks/TalkItem";
 import { updateTalk, deleteTalk, getTalk } from "../services/TalksService";
-import AddTalk from "../components/talks/AddTalks";
 import { fetchAndSetTalks } from "../utils/talkUtils";
 
 const TalksDetailPage = () => {
@@ -19,16 +18,28 @@ const TalksDetailPage = () => {
   const [talk, setTalk] = useState<Talk | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  // Hent talk
   useEffect(() => {
-    if (talk) {
-      setFormData(talk);
-    }
-  }, [talk]);
+    const fetchTalk = async () => {
+      if (!id) {
+        console.error("Talk ID is missing");
+        setLoading(false);
+        return;
+      }
+      try {
+        const fetchedTalk = await getTalk(id);
+        setTalk(fetchedTalk);
+      } catch (err) {
+        console.error("Failed to fetch talk:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!talk) {
-    return <p>Talk not found</p>;
-  }
+    fetchTalk();
+  }, [id]);
 
+  // Endre foredrag
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -50,7 +61,7 @@ const TalksDetailPage = () => {
     }
   };
 
-  // slette foredrag ---
+  // slette foredrag (funker)
   const handleDelete = async () => {
     if (!talk || !talk._uuid) {
       console.error("Talk is missing or does not have an ID.");
@@ -99,16 +110,17 @@ const TalksDetailPage = () => {
     }
   };
 
+  //Returns
   if (loading) {
     return <p>Loading...</p>;
   }
   if (!talk) {
     return <p>ingen foredrag funnet</p>;
   }
+
   return (
     <div className="rooms-container single-room-container">
       <TalkItem talk={talk} onDelete={handleDelete} onEdit={handleUpdate} />
-      <AddTalk />
     </div>
   );
 };

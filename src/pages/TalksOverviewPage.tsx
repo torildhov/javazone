@@ -1,13 +1,15 @@
-import TalkList from '../components/talks/TalkList';
-import { useContext } from 'react';
-import { DataContext } from '../context/DataContext';
-
+import TalkList from "../components/talks/TalkList";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
+import AddTalk from "../components/talks/AddTalks";
+import { useAuth } from "../context/AuthContext";
 
 const TalksOverviewPage = () => {
+  const { isAuthenticated } = useAuth();
   const context = useContext(DataContext);
 
   if (!context) {
-    throw new Error('DataContext not found!');
+    throw new Error("DataContext not found!");
   }
 
   const { isLoading, talks } = context;
@@ -18,8 +20,10 @@ const TalksOverviewPage = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <TalkList talks={talks} />
-      
+        <div>
+          <TalkList talks={talks} />
+          {isAuthenticated && <AddTalk />}
+        </div>
       )}
     </>
   );
