@@ -10,6 +10,10 @@ export const Footer = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="footer">
       <div className="scroll-top" onClick={scrollToTop}>
@@ -18,9 +22,9 @@ export const Footer = () => {
       <div className="footer-content">
         <div className="footer-section">
           <h3>Links</h3>
-          <Link to="/speakers">Speakers</Link>
-          <Link to="/talks">Talks</Link>
-          <Link to="/rooms">Rooms</Link>
+          <Link to="/speakers" onClick={handleClick}>Speakers</Link>
+          <Link to="/talks" onClick={handleClick}>Talks</Link>
+          <Link to="/rooms" onClick={handleClick}>Rooms</Link>
         </div>
 
         <div className="footer-section">
