@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { createSpeaker } from "../../services/speakerService";
 import { DataContext } from "../../context/DataContext";
 import { fetchAndSetSpeakers } from "../../utils/speakerUtils";
@@ -12,7 +12,7 @@ const AddSpeaker: React.FC = () => {
     throw new Error("Unable to find DataConext");
   }
 
-  const { speakers, setSpeakers } = context;
+  const { setSpeakers } = context;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

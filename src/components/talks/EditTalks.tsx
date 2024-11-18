@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { DataContext, Talk } from "../../context/DataContext";
-import { updateTalk } from "../../services/TalksService";
 import "./talkItem.css";
 
 interface EditTalkProps {
@@ -19,7 +18,7 @@ const EditTalk: React.FC<EditTalkProps> = ({ talk, onClose, onUpdate }) => {
   if (!context) {
     throw new Error("DataContext not found");
   }
-  const { rooms, speakers, talks } = context;
+  const { rooms, speakers } = context;
 
   // src/components/talks/EditTalks.tsx
   const handleSubmit = async (e: React.FormEvent) => {
