@@ -4,8 +4,6 @@ import { DataContext, Room } from "../context/DataContext";
 import RoomItem from "../components/rooms/RoomItem";
 import { deleteRoom, getRoom, updateRoom } from "../services/roomService";
 import { fetchAndSetRooms } from "../utils/roomUtils";
-import "../components/rooms/RoomItem.css"
-
 
 const RoomDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -97,7 +95,7 @@ const RoomDetailsPage = () => {
   }
 
   return (
-    <div className="rooms-container single-room-container">
+    <div className="rooms-container">
       <RoomItem room={room} onDelete={handleDelete} onEdit={handleEdit} />
     </div>
   );
