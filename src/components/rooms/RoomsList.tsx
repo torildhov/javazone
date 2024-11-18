@@ -10,7 +10,7 @@ const RoomsList = () => {
     throw new Error("Finner ikke DataContext");
   }
 
-  const { rooms } = context;
+  const { rooms, talks } = context;
   const navigate = useNavigate();
 
   const handleRoomClick = (id: string) => {
@@ -29,11 +29,22 @@ const RoomsList = () => {
             onClick={() => room._uuid && handleRoomClick(room._uuid)}
             style={{ cursor: "pointer" }}
           >
-            <h2> {room.name}</h2>
+            <h2>{room.name}</h2>
+
+            <div>
+              {talks
+                .filter((talk) => talk.roomId === room._uuid)
+                .map((talk) => (
+                  <div key={talk._uuid}>
+                    <p>
+                      Kl {talk.time}: {talk.title}
+                    </p>
+                  </div>
+                ))}
+            </div>
           </div>
         ))}
     </div>
   );
 };
-
 export default RoomsList;
