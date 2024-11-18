@@ -18,10 +18,10 @@ const SpeakerItem = ({ speaker, onDelete, onEdit }: SpeakerItemProps) => {
     throw new Error("DataContext not found!");
   }
 
-  const { talks } = context;
+  const { talks, rooms } = context;
 
   //Filter the talks that are associated with the speaker
-  const getTalksforSpeaker = talks.filter(
+  const getTalksForSpeaker = talks.filter(
     (talk) => talk.speakerId === speaker._uuid
   );
 
@@ -38,14 +38,18 @@ const SpeakerItem = ({ speaker, onDelete, onEdit }: SpeakerItemProps) => {
       <p>Biography: {speaker.biography || "No biography available"}</p>
       <br />
       <h3>Talks:</h3>
-      {getTalksforSpeaker.length > 0 ? (
+      {getTalksForSpeaker.length > 0 ? (
         <ul>
-          {getTalksforSpeaker.map((talk) => (
-            <li key={talk._uuid}>
-              <strong>{talk.title}</strong> - Room ID: {talk.roomId}, Time:{" "}
-              {talk.time}
-            </li>
-          ))}
+          {getTalksForSpeaker.map((talk) => {
+            const room = rooms.find((room) => room._uuid === talk.roomId);
+
+            return (
+              <li key={talk._uuid}>
+                <strong>{talk.title}</strong> - Room:{" "}
+                {room ? room.name : "Unknown Room"}, Time: {talk.time}
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <p>No talks available for this speaker.</p>
