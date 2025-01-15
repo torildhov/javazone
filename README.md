@@ -34,16 +34,16 @@ npm run dev
 
 ## 🛠️ Tech Stack
 ### Core
-⚛️ React 18
-📘 TypeScript
-⚡ Vite
-🎨 CSS Modules
+- ⚛️ React 18
+- 📘 TypeScript
+- ⚡ Vite
+- 🎨 CSS Modules
 
 ### Libraries
-🧭 React Router v6
-🎯 React Icons
-🎨 @firecms/neat
-📝 Josefin Sans Font
+- 🧭 React Router v6
+- 🎯 React Icons
+- 🎨 @firecms/neat
+- 📝 Josefin Sans Font
 
 ## 📁 Project Structure
 ```
@@ -89,7 +89,7 @@ This project allready contains a .env file with the API url and the API key beca
 - Animated gradient using NeatGradient
 - Configurable colors and patterns
 - Smooth transitions
-- 
+  
 ### Custom Cursor
 - Interactive cursor animations
 - Context-aware behavior
