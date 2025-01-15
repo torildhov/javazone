@@ -1,4 +1,4 @@
-import { DataContext, Talk } from "../../context/DataContext";
+import { DataContext } from "../../context/DataContext";
 import { useContext } from "react";
 
 interface RoomTalksProps {
