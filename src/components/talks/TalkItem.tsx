@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Talk, Speaker, Room, DataContext } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
-import "./talkItem.css";
 import { useAuth } from "../../context/AuthContext";
 
 interface TalkItemProps {
